@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Engine
-{
+namespace Engine {
     /// <summary>
     /// A class that can represent a game object with a sprite.
     /// </summary>
-    public class SpriteGameObject : GameObject
-    {
+    public class SpriteGameObject : GameObject {
         /// <summary>
         /// The sprite that this object can draw on the screen.
         /// </summary>
@@ -21,8 +19,7 @@ namespace Engine
         /// <summary>
         /// The sheet index of the attached sprite sheet.
         /// </summary>
-        public int SheetIndex
-        {
+        public int SheetIndex {
             get { return sprite.SheetIndex; }
             set { sprite.SheetIndex = value; }
         }
@@ -39,8 +36,7 @@ namespace Engine
         /// <param name="spriteName">The name of the sprite to load.</param>
         /// <param name="depth">The depth at which the object should be drawn.</param>
         /// <param name="sheetIndex">The sheet index of the sprite to use initially.</param>
-        public SpriteGameObject(string spriteName, float depth, int sheetIndex = 0)
-        {
+        public SpriteGameObject(string spriteName, float depth, int sheetIndex = 0) {
             this.depth = depth;
 
             if (spriteName != null)
@@ -54,8 +50,7 @@ namespace Engine
         /// </summary>
         /// <param name="gameTime">An object containing information about the time that has passed in the game.</param>
         /// <param name="spriteBatch">A sprite batch object used for drawing sprites.</param>
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
             if (!Visible)
                 return;
 
@@ -77,8 +72,7 @@ namespace Engine
         /// <summary>
         /// Updates this object's origin so that it lies in the center of the sprite.
         /// </summary>
-        public void SetOriginToCenter()
-        {
+        public void SetOriginToCenter() {
             Origin = sprite.Center;
         }
 
@@ -86,10 +80,8 @@ namespace Engine
         /// Gets a Rectangle that describes this game object's current bounding box.
         /// This is useful for collision detection.
         /// </summary>
-        public Rectangle BoundingBox
-        {
-            get
-            {
+        public Rectangle BoundingBox {
+            get {
                 // get the sprite's bounds
                 Rectangle spriteBounds = sprite.Bounds;
                 // add the object's position to it as an offset
@@ -106,16 +98,13 @@ namespace Engine
         /// <returns>true if this object overlaps with the given rectangle 
         /// and that intersection contains at least one non-transparent pixel.
         /// Returns false otherwise.</returns>
-        public bool HasPixelPreciseCollision(Rectangle other)
-        {
+        public bool HasPixelPreciseCollision(Rectangle other) {
             // calculate the intersection between the two bounding boxes
             Rectangle b = CollisionDetection.CalculateIntersection(BoundingBox, other);
 
             // if at least one pixel in this part is not transparent, then there's a collision
-            for (int x = 0; x < b.Width; x++)
-            {
-                for (int y = 0; y < b.Height; y++)
-                {
+            for (int x = 0; x < b.Width; x++) {
+                for (int y = 0; y < b.Height; y++) {
                     // get the correct pixel coordinates of both sprites
                     int thisX = b.X - (int)(GlobalPosition.X - Origin.X) + x;
                     int thisY = b.Y - (int)(GlobalPosition.Y - Origin.Y) + y;
@@ -137,15 +126,12 @@ namespace Engine
         /// <returns>true if the two objects overlap and that intersection contains 
         /// at least one pixel that is non-transparent for both objects.
         /// Returns false otherwise.</returns>
-        public bool HasPixelPreciseCollision(SpriteGameObject other)
-        {
+        public bool HasPixelPreciseCollision(SpriteGameObject other) {
             // calculate the intersection between the two bounding boxes
             Rectangle b = CollisionDetection.CalculateIntersection(BoundingBox, other.BoundingBox);
 
-            for (int x = 0; x < b.Width; x++)
-            {
-                for (int y = 0; y < b.Height; y++)
-                {
+            for (int x = 0; x < b.Width; x++) {
+                for (int y = 0; y < b.Height; y++) {
                     // get the correct pixel coordinates of both sprites
                     int thisX = b.X - (int)(GlobalPosition.X - Origin.X) + x;
                     int thisY = b.Y - (int)(GlobalPosition.Y - Origin.Y) + y;

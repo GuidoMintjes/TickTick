@@ -1,5 +1,6 @@
 ﻿using Engine;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 
@@ -117,6 +118,17 @@ partial class Level : GameObjectList
             // stop the timer
             timer.Running = false;
         }
+
+        if (Keyboard.GetState().IsKeyDown(Keys.O)) {
+
+            completionDetected = true;
+            ExtendedGameWithLevels.GetPlayingState().LevelCompleted(LevelIndex);
+            Player.Celebrate();
+
+            // stop the timer
+            timer.Running = false;
+        }
+
 
         // check if the timer has passed
         else if (Player.IsAlive && timer.HasPassed)

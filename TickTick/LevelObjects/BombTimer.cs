@@ -10,6 +10,7 @@ class BombTimer : GameObjectList
     public float Multiplier { get; set; }
 
     TextGameObject label;
+    TextGameObject tijd;
 
     public bool HasPassed { get { return timeLeft <= 0; } }
 
@@ -25,6 +26,9 @@ class BombTimer : GameObjectList
         label = new TextGameObject("Fonts/MainFont", TickTick.Depth_UIForeground, Color.Yellow, TextGameObject.Alignment.Center);
         label.LocalPosition = new Vector2(50,25);
         AddChild(label);
+        tijd = new TextGameObject("Fonts/MainFont", TickTick.Depth_UIForeground, Color.Yellow, TextGameObject.Alignment.Center);
+        tijd.LocalPosition = new Vector2(150, 25);
+        AddChild(tijd);
 
         Reset();
     }
@@ -41,7 +45,7 @@ class BombTimer : GameObjectList
 
         // display the remaining time
         int secondsLeft = (int)Math.Ceiling(timeLeft);
-        label.Text = CreateTimeString(secondsLeft);
+        label.Text = CreateTimeString(secondsLeft);;
         
         // in the last 10 seconds, let the color blink between yellow and red
         if (secondsLeft <= 10 && secondsLeft % 2 == 0)
@@ -62,7 +66,7 @@ class BombTimer : GameObjectList
     public override void Reset()
     {
         base.Reset();
-        timeLeft = 30;
+        timeLeft = 100;
         Running = true;
         Multiplier = 1;
     }

@@ -149,11 +149,31 @@ partial class Level : GameObjectList
     {
         // create the water drop object;  place it around the center of the tile
         Vector2 pos = GetCellPosition(x, y) + new Vector2(TileWidth / 2, TileHeight / 3);
-        WaterDrop w = new WaterDrop(this, pos);
-        // add it to the game world
-        AddChild(w);
-        // store an extra reference to it
-        waterDrops.Add(w);
+        int random = WaterDrop.rng.Next(2, 3);
+        if (random == 0) {
+
+            WobblyDrop w = new WobblyDrop(this, pos);
+            // add it to the game world
+            AddChild(w);
+            // store an extra reference to it
+            waterDrops.Add(w);
+
+        } else if (random == 1){
+
+            RisingDrop w = new RisingDrop(this, pos);
+            // add it to the game world
+            AddChild(w);
+            // store an extra reference to it
+            waterDrops.Add(w);
+        }
+        else {
+
+            WaterDrop w = new WaterDrop(this, pos);
+            // add it to the game world
+            AddChild(w);
+            // store an extra reference to it
+            waterDrops.Add(w);
+        }
     }
 
     void LoadRocketEnemy(int x, int y)
