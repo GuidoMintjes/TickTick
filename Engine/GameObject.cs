@@ -75,7 +75,7 @@ namespace Engine
         /// For example, this can be useful for restarting a level of the game.
         /// Override this method so that it resets everything it needs to.
         /// </summary>
-        public virtual void Reset()
+        protected void Reset()
         {
             velocity = Vector2.Zero;
         }
