@@ -126,7 +126,7 @@ namespace Engine
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spriteScale);
 
             effect.CurrentTechnique.Passes[0].Apply();            // Enable the shader/effect
-
+            effect.Parameters["TimeInSeconds"].SetValue((float) (gameTime.TotalGameTime.TotalSeconds % 1));
 
             // let the game world draw itself
             GameStateManager.Draw(gameTime, spriteBatch);
