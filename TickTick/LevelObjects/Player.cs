@@ -78,7 +78,7 @@ class Player : AnimatedGameObject
         if (!CanCollideWithObjects)
             return;
 
-        // arrow keys: move left or right or down
+        // arrow keys: move left or right
         if (inputHelper.KeyDown(Keys.Left))
         {
             facingLeft = true;
@@ -92,24 +92,25 @@ class Player : AnimatedGameObject
             desiredHorizontalSpeed = walkingSpeed;
             if (isGrounded)
                 PlayAnimation("run");
-        } 
-        else if (inputHelper.KeyDown(Keys.Down)) {
-
-            downPressed = true;
         }
 
           // no arrow keys: don't move
-          else
+        else
         {
             desiredHorizontalSpeed = 0;
             if (isGrounded)
                 PlayAnimation("idle");
-            downPressed = false;
         }
 
         // spacebar: jump
         if (isGrounded && inputHelper.KeyPressed(Keys.Space))
             Jump();
+
+        // down key: for falling through platforms 
+        if (inputHelper.KeyDown(Keys.Down)) {
+
+            downPressed = true;
+        }
 
         // falling?
         if (!isGrounded)
@@ -146,6 +147,7 @@ class Player : AnimatedGameObject
 
     public override void Update(GameTime gameTime)
     {
+
         Vector2 previousPosition = localPosition;
 
         if (IsSpeeding) {
@@ -179,6 +181,7 @@ class Player : AnimatedGameObject
                 level.Timer.Multiplier = 1;
         }
             
+        downPressed = false;
     }
 
     void ApplyFriction(GameTime gameTime)
