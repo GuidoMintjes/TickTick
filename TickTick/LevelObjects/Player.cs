@@ -17,8 +17,10 @@ class Player : AnimatedGameObject
     bool facingLeft; // Whether or not the character is currently looking to the left.
 
     bool isGrounded; // Whether or not the character is currently standing on something.
-    bool standingOnIceTile, standingOnHotTile; // Whether or not the character is standing on an ice tile or a hot tile.
+    bool standingOnIceTile, standingOnHotTile; // Whether or not the character is standing on an ice tile or a hot tile or a platform.
     float desiredHorizontalSpeed; // The horizontal speed at which the character would like to move.
+
+    bool downPressed; // if the down keys is being pressed
 
     Level level;
     Vector2 startPosition;
@@ -61,6 +63,7 @@ class Player : AnimatedGameObject
         facingLeft = false;
         isGrounded = true;
         standingOnIceTile = standingOnHotTile = false;
+        downPressed = false;
 
         IsAlive = true;
         isExploding = false;
@@ -72,7 +75,7 @@ class Player : AnimatedGameObject
         if (!CanCollideWithObjects)
             return;
 
-        // arrow keys: move left or right
+        // arrow keys: move left or right or down
         if (inputHelper.KeyDown(Keys.Left))
         {
             facingLeft = true;
@@ -86,14 +89,19 @@ class Player : AnimatedGameObject
             desiredHorizontalSpeed = walkingSpeed;
             if (isGrounded)
                 PlayAnimation("run");
+        } 
+        else if (inputHelper.KeyDown(Keys.Down)) {
+
+            downPressed = true;
         }
 
-        // no arrow keys: don't move
-        else
+          // no arrow keys: don't move
+          else
         {
             desiredHorizontalSpeed = 0;
             if (isGrounded)
                 PlayAnimation("idle");
+            downPressed = false;
         }
 
         // spacebar: jump
@@ -239,7 +247,12 @@ class Player : AnimatedGameObject
                 // otherwise, treat this as a vertical collision
                 else
                 {
-                    if (velocity.Y >= 0 && bbox.Center.Y < tileBounds.Top && overlap.Width > 6) // floor
+                    if (tileType == Tile.Type.Platform && downPressed == true) {
+
+                        continue;
+                    }
+
+                    else if (velocity.Y >= 0 && bbox.Center.Y < tileBounds.Top && overlap.Width > 6) // floor
                     {
                         isGrounded = true;
                         velocity.Y = 0;
@@ -251,6 +264,7 @@ class Player : AnimatedGameObject
                             standingOnHotTile = true;
                         else if (surface == Tile.SurfaceType.Ice)
                             standingOnIceTile = true;
+
                     }
                     else if (velocity.Y <= 0 && bbox.Center.Y > tileBounds.Bottom && overlap.Height > 2) // ceiling
                     {
