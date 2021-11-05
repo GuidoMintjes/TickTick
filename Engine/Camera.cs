@@ -8,7 +8,7 @@ using System;
 namespace Engine {
     static class Camera {
 
-    static Point windowSize;
+    1static Point windowSize;
 
     }
 }
