@@ -136,8 +136,7 @@ namespace Engine
 
             postProcessingShader.CurrentTechnique.Passes[0].Apply();            // Enable the shader/effect
             postProcessingShader.Parameters["TimeInSeconds"].SetValue((float) gameTime.TotalGameTime.TotalSeconds);
-
-
+            
             // let the game world draw itself
             GameStateManager.Draw(gameTime, spriteBatch);
 

@@ -30,10 +30,13 @@ struct VertexShaderOutput
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float4 origTex = tex2D(SpriteTextureSampler, input.TextureCoordinates + 
-									float2(0, sin(TimeInSeconds + 
-											(input.TextureCoordinates.x * TimeInSeconds % (sin(TimeInSeconds / 10) * 20))) / 2));
+									float2(0, sin(TimeInSeconds) + sin((input.TextureCoordinates.x + (TimeInSeconds)) * 3) ) / 4);
+											//(input.TextureCoordinates.x * TimeInSeconds % (sin(TimeInSeconds / 10) * 200)) / 2));
 
-	float4 origColor = input.Color;
+	float4 origColor = float4(	input.Color.r * sin(TimeInSeconds % 20),
+								input.Color.r * sin(TimeInSeconds % 10),
+								input.Color.r * sin(TimeInSeconds % 5),
+								input.Color.a);
 
 	return origTex * origColor;
 }
