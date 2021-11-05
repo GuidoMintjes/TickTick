@@ -47,7 +47,15 @@ namespace Engine
         public static string ContentRootDirectory { get { return "Content"; } }
 
 
-        public Effect effect;
+        // Just some random different shaders
+        Effect trippyShader;
+        Effect postProcessingShader;
+
+
+        // Post processing settings, TODO: put them somewhere more logical
+        public float blurAmount = 11f;
+
+
 
         /// <summary>
         /// Creates a new ExtendedGame object.
@@ -77,7 +85,8 @@ namespace Engine
 
             // store a static reference to the AssetManager
             AssetManager = new AssetManager(Content);
-            effect = AssetManager.LoadEffect("Effects/TestShader");
+            trippyShader = AssetManager.LoadEffect("Effects/TrippyShader");
+            postProcessingShader = AssetManager.LoadEffect("Effects/PostProcessingShader");
 
             // prepare an empty game state manager
             GameStateManager = new GameStateManager();
@@ -125,13 +134,14 @@ namespace Engine
             // start drawing sprites, applying the scaling matrix
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spriteScale);
 
-            effect.CurrentTechnique.Passes[0].Apply();            // Enable the shader/effect
-            effect.Parameters["TimeInSeconds"].SetValue((float) gameTime.TotalGameTime.TotalSeconds);
+            postProcessingShader.CurrentTechnique.Passes[0].Apply();            // Enable the shader/effect
+            postProcessingShader.Parameters["TimeInSeconds"].SetValue((float) gameTime.TotalGameTime.TotalSeconds);
+
 
             // let the game world draw itself
             GameStateManager.Draw(gameTime, spriteBatch);
 
-            spriteBatch.End();
+            spriteBatch.End(); 
         }
 
         /// <summary>

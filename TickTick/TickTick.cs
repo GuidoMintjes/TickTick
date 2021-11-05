@@ -11,6 +11,7 @@ class TickTick : ExtendedGameWithLevels
     public const float Depth_LevelObjects = 0.6f; // for all game objects except the player
     public const float Depth_LevelPlayer = 0.7f; // for the player
 
+    public float blurEffect = 5f;
 
     [STAThread]
     static void Main()

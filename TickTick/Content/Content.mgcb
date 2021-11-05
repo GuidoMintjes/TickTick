@@ -13,11 +13,17 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Effects/TestShader.fx
+#begin Effects/PostProcessingShader.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:Effects/TestShader.fx
+/build:Effects/PostProcessingShader.fx
+
+#begin Effects/TrippyShader.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/TrippyShader.fx
 
 #begin Fonts/HintFont.spritefont
 /importer:FontDescriptionImporter
