@@ -342,7 +342,7 @@ class Player : AnimatedGameObject
         IsSpeeding = enabled;
 
         if(enabled) {
-            sprite.SetColour(Color.Red);
+            base.sprite.SetColour(Color.Red);
         } else {
             sprite.SetColour(Color.White);
         }

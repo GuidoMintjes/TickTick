@@ -161,9 +161,8 @@ namespace Engine
             return pixelTransparency[column * Width + x, row * Height + y];
         }
 
-
-
         public void SetColour(Color colour) {
+
             overrideColour = colour;
         }
     }
