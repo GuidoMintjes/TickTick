@@ -291,6 +291,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/LevelObjects/Player/spr_run@13.png
 
+#begin Sprites/LevelObjects/Powerup/Apple.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/LevelObjects/Powerup/Apple.png
+
 #begin Sprites/LevelObjects/Powerup/Appleup.png
 /importer:TextureImporter
 /processor:TextureProcessor

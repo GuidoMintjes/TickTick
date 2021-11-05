@@ -6,12 +6,11 @@ class WaterDrop : CollectibleObject {
 
     public WaterDrop(Level level, Vector2 startPosition) : base(level, startPosition, "Sprites/LevelObjects/spr_water") { }
 
-    public virtual void MoveDrop(GameTime gametime) {
-        
-    }
+    public virtual void MoveDrop(GameTime gametime) { }
 
-    public override void Update(GameTime gameTime) {
-        base.Update(gameTime);
+    public override void HandleCollision() {
+
+        Console.WriteLine("Water");
     }
 }
 

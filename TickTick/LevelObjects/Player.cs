@@ -9,7 +9,8 @@ class Player : AnimatedGameObject
     const float jumpSpeed = 900; // Lift-off speed when the character jumps.
     const float gravity = 2300; // Strength of the gravity force that pulls the character down.
     const float maxFallSpeed = 1200; // The maximum vertical speed at which the character can fall.
-    
+    const float speedUpMultiplier = 1.5f; // The multiplier by which the speed will be multiplied when speeding.
+
     const float iceFriction = 1; // Friction factor that determines how slippery the ice is; closer to 0 means more slippery.
     const float normalFriction = 20; // Friction factor that determines how slippery a normal surface is.
     const float airFriction = 5; // Friction factor that determines how much (horizontal) air resistance there is.
@@ -33,6 +34,8 @@ class Player : AnimatedGameObject
     public bool CanCollideWithObjects { get { return IsAlive && !isCelebrating; } }
 
     public bool IsMoving { get { return velocity != Vector2.Zero; } }
+
+    public bool IsSpeeding { get; set; }
 
     public Player(Level level, Vector2 startPosition) : base(TickTick.Depth_LevelPlayer)
     {
@@ -144,6 +147,13 @@ class Player : AnimatedGameObject
     public override void Update(GameTime gameTime)
     {
         Vector2 previousPosition = localPosition;
+
+        if (IsSpeeding) {
+            desiredHorizontalSpeed *= speedUpMultiplier;
+
+            // To-Do: start timer to end speedup
+        }
+
 
         if (CanCollideWithObjects)
             ApplyFriction(gameTime);

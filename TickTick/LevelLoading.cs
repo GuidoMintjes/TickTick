@@ -1,5 +1,6 @@
 ﻿using Engine;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -103,6 +104,8 @@ partial class Level : GameObjectList
             LoadTurtleEnemy(x, y);
         else if (symbol == 'S')
             LoadSparkyEnemy(x, y);
+        else if (symbol == 'z')
+            LoadSpeedUp(x, y);
         else if (symbol == 'A' || symbol == 'B' || symbol == 'C')
             LoadFlameEnemy(x, y, symbol);
     }
@@ -208,6 +211,12 @@ partial class Level : GameObjectList
             enemy = new UnpredictableEnemy(this, pos);
 
         AddChild(enemy);
+    }
+
+    private void LoadSpeedUp(int x, int y) {
+
+        Powerup speed = new Powerup(this, GetCellBottomCenter(x, y));
+        AddChild(speed);
     }
 
     Vector2 GetCellBottomCenter(int x, int y)

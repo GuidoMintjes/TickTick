@@ -12,6 +12,7 @@ class CollectibleObject : SpriteGameObject {
     public static Random rng = new Random();
 
     public CollectibleObject(Level level, Vector2 startPosition, string spritePath) : base(spritePath, TickTick.Depth_LevelObjects) {
+        
         this.level = level;
         this.startPosition = startPosition;
 
@@ -20,8 +21,7 @@ class CollectibleObject : SpriteGameObject {
         Reset();
     }
 
-    public virtual void Update(GameTime gameTime) {
-        base.Update(gameTime);
+    public override void Update(GameTime gameTime) {
 
         double t = gameTime.TotalGameTime.TotalSeconds * 3.0f + LocalPosition.X;
         bounce = (float)Math.Sin(t) * 0.2f;
@@ -31,13 +31,21 @@ class CollectibleObject : SpriteGameObject {
         if (Visible && level.Player.CanCollideWithObjects && HasPixelPreciseCollision(level.Player)) {
             Visible = false;
             ExtendedGame.AssetManager.PlaySoundEffect("Sounds/snd_watercollected");
+
+            HandleCollision();
         }
     }
 
-    protected void Reset() {
+    public override void Reset() {
         localPosition = startPosition;
         Visible = true;
 
         base.Reset();
+    }
+
+
+    public virtual void HandleCollision() {
+
+        Console.WriteLine("Collectibel");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Engine
 {
@@ -75,7 +76,7 @@ namespace Engine
         /// For example, this can be useful for restarting a level of the game.
         /// Override this method so that it resets everything it needs to.
         /// </summary>
-        protected void Reset()
+        public virtual void Reset()
         {
             velocity = Vector2.Zero;
         }
