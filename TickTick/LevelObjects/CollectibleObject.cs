@@ -32,6 +32,8 @@ class CollectibleObject : SpriteGameObject {
             Visible = false;
             ExtendedGame.AssetManager.PlaySoundEffect("Sounds/snd_watercollected");
 
+            //Console.WriteLine($"Collectible obtained + {localPosition}");
+
             HandleCollision();
         }
     }

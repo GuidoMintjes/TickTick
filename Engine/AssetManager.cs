@@ -37,6 +37,12 @@ namespace Engine
             return contentManager.Load<SpriteFont>(assetName);
         }
 
+
+        public Effect LoadEffect(string assetName) {
+
+            return contentManager.Load<Effect>(assetName);
+        }
+
         /// <summary>
         /// Loads and plays the sound effect with the given asset name.
         /// </summary>
@@ -57,6 +63,5 @@ namespace Engine
             MediaPlayer.IsRepeating = repeat;
             MediaPlayer.Play(contentManager.Load<Song>(assetName));
         }
-
     }
 }

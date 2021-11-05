@@ -10,6 +10,7 @@ namespace Engine
     {
         Texture2D sprite;
         Rectangle spriteRectangle;
+        Color overrideColour = Color.White;
 
         int sheetIndex;
         int sheetColumns;
@@ -78,7 +79,7 @@ namespace Engine
             if (Mirror)
                 spriteEffects = SpriteEffects.FlipHorizontally;
 
-            spriteBatch.Draw(sprite, position, spriteRectangle, Color.White,
+            spriteBatch.Draw(sprite, position, spriteRectangle, overrideColour,
                 0.0f, origin, 1.0f, spriteEffects, depth);
         }
 
@@ -158,6 +159,11 @@ namespace Engine
             int row = sheetIndex / sheetColumns % sheetRows;
 
             return pixelTransparency[column * Width + x, row * Height + y];
+        }
+
+        public void SetColour(Color colour) {
+
+            overrideColour = colour;
         }
     }
 }

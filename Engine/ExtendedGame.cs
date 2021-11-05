@@ -46,6 +46,9 @@ namespace Engine
 
         public static string ContentRootDirectory { get { return "Content"; } }
 
+
+        public Effect effect;
+
         /// <summary>
         /// Creates a new ExtendedGame object.
         /// </summary>
@@ -74,6 +77,7 @@ namespace Engine
 
             // store a static reference to the AssetManager
             AssetManager = new AssetManager(Content);
+            effect = AssetManager.LoadEffect("Effects/TestShader");
 
             // prepare an empty game state manager
             GameStateManager = new GameStateManager();
@@ -119,7 +123,10 @@ namespace Engine
             GraphicsDevice.Clear(Color.Black);
 
             // start drawing sprites, applying the scaling matrix
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, spriteScale);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spriteScale);
+
+            effect.CurrentTechnique.Passes[0].Apply();            // Enable the shader/effect
+
 
             // let the game world draw itself
             GameStateManager.Draw(gameTime, spriteBatch);
