@@ -93,10 +93,6 @@ class Player : AnimatedGameObject
             if (isGrounded)
                 PlayAnimation("run");
         } 
-        else if (inputHelper.KeyDown(Keys.Down)) {
-
-            downPressed = true;
-        }
 
           // no arrow keys: don't move
           else
@@ -110,6 +106,12 @@ class Player : AnimatedGameObject
         // spacebar: jump
         if (isGrounded && inputHelper.KeyPressed(Keys.Space))
             Jump();
+
+        // down key: fall down if on a platform
+        else if (inputHelper.KeyDown(Keys.Down)) {
+
+            downPressed = true;
+        }
 
         // falling?
         if (!isGrounded)
@@ -332,5 +334,17 @@ class Player : AnimatedGameObject
 
         // stop moving
         velocity = Vector2.Zero;
+    }
+
+
+    public void ToggleSpeeding(bool enabled) {
+
+        IsSpeeding = enabled;
+
+        if(enabled) {
+            sprite.SetColour(Color.Red);
+        } else {
+            sprite.SetColour(Color.White);
+        }
     }
 }

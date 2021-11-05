@@ -10,7 +10,6 @@ class WaterDrop : CollectibleObject {
 
     public override void HandleCollision() {
 
-        Console.WriteLine("Water");
     }
 }
 

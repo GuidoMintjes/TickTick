@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace Engine
 {
@@ -28,8 +29,9 @@ namespace Engine
 
             // if enough time has passed, make the target object invisible
             timeLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             if (timeLeft <= 0)
-                target.Visible = false;
+                HandleTimerEnd();
         }
 
         /// <summary>
@@ -39,7 +41,14 @@ namespace Engine
         public void StartTimer(float seconds)
         {
             timeLeft = seconds;
-            target.Visible = true;
+            //target.Visible = true;
+        }
+
+
+        public virtual void HandleTimerEnd() {
+
+            Console.WriteLine("Main timer used!");
+            //target.Visible = false;
         }
     }
 }

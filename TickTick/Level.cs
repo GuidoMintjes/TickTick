@@ -17,6 +17,7 @@ partial class Level : GameObjectList
 
     SpriteGameObject goal;
     BombTimer timer;
+    SpeedBackTimer stimer;
 
     bool completionDetected;
 
@@ -38,6 +39,11 @@ partial class Level : GameObjectList
         // add the timer
         timer = new BombTimer();
         AddChild(timer);
+
+
+        stimer = new SpeedBackTimer(this);
+        AddChild(stimer);
+
 
         // add mountains in the background
         for (int i = 0; i < 4; i++)
@@ -68,6 +74,8 @@ partial class Level : GameObjectList
     }
 
     public BombTimer Timer { get { return timer; } }
+
+    public SpeedBackTimer SpeedTimer { get { return stimer; } }
 
     public Vector2 GetCellPosition(int x, int y)
     {
