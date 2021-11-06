@@ -39,7 +39,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 																	cos(input.TextureCoordinates.x * cos(31 * TimeInSeconds) + TimeInSeconds)),
 								input.Color.b * sin(TimeInSeconds + input.TextureCoordinates.y * 7 + 
 																	cos(input.TextureCoordinates.x * sin(17 * TimeInSeconds) + TimeInSeconds)),
-								input.Color.a);
+								input.Color.a * sin(TimeInSeconds + input.TextureCoordinates.x));
 
 	return origTex * origColor;
 }
