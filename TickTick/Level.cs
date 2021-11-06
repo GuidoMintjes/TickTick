@@ -1,5 +1,7 @@
 ﻿using Engine;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,11 @@ partial class Level : GameObjectList
     SpeedBackTimer stimer;
 
     bool completionDetected;
+
+
+    // To handle shaders for individual sprites
+    public Effect rainbowShader;    //TODO: ADD ON BETTER SPOT AND REMOVE HERE
+
 
     public Level(int levelIndex, string filename)
     {
@@ -61,6 +68,10 @@ partial class Level : GameObjectList
         // add clouds
         for (int i = 0; i < 6; i++)
             backgrounds.AddChild(new Cloud(this));
+
+
+        // Load in shaders
+        rainbowShader = TickTick.AssetManager.LoadEffect("Effects/RainbowShader");
     }
 
     public Rectangle BoundingBox

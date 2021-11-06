@@ -1,5 +1,6 @@
 using Engine;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 
 class TickTick : ExtendedGameWithLevels
@@ -51,4 +52,8 @@ class TickTick : ExtendedGameWithLevels
         // play background music
         AssetManager.PlaySong("Sounds/snd_music", true);
     }
+
+
+
+    public Viewport GetViewPort() => CalculateViewport(windowSize);
 }

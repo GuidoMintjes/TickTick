@@ -1,5 +1,6 @@
 using Engine;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 
@@ -182,6 +183,41 @@ class Player : AnimatedGameObject
         }
             
         downPressed = false;
+    }
+
+
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
+
+        //float totalTime = (float) gameTime.TotalGameTime.TotalSeconds;
+
+
+        if (!Visible)
+            return;
+
+        // draw the sprite at its *global* position in the game world
+        if (sprite != null)
+
+            if (!IsSpeeding)
+                sprite.Draw(spriteBatch, GlobalPosition, Origin);
+            else {
+
+                Matrix spriteScale = Matrix.CreateScale(TickTick)
+
+                spriteBatch.End();
+
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, );
+
+                level.rainbowShader.CurrentTechnique.Passes[0].Apply();
+                sprite.Draw(spriteBatch, GlobalPosition, Origin);
+
+                spriteBatch.End();
+
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, );
+            }
+
+
+
+        //base.Draw(gameTime, spriteBatch);
     }
 
     void ApplyFriction(GameTime gameTime)

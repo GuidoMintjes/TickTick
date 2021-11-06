@@ -47,14 +47,12 @@ namespace Engine
         public static string ContentRootDirectory { get { return "Content"; } }
 
 
-        // Just some random different shaders
-        Effect trippyShader;
-        Effect postProcessingShader;
-
-
         // Post processing settings, TODO: put them somewhere more logical
         public float blurAmount = 11f;
 
+
+        // To save and handle the use of shaders
+        //ShaderList shadersLoad;   //TODO: IN ANOTHER PLACE
 
 
         /// <summary>
@@ -85,11 +83,11 @@ namespace Engine
 
             // store a static reference to the AssetManager
             AssetManager = new AssetManager(Content);
-            trippyShader = AssetManager.LoadEffect("Effects/TrippyShader");
-            postProcessingShader = AssetManager.LoadEffect("Effects/PostProcessingShader");
+
 
             // prepare an empty game state manager
             GameStateManager = new GameStateManager();
+
 
             // by default, we're not running in full-screen mode
             FullScreen = false;
@@ -132,11 +130,9 @@ namespace Engine
             GraphicsDevice.Clear(Color.Black);
 
             // start drawing sprites, applying the scaling matrix
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spriteScale);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, spriteScale);
 
-            postProcessingShader.CurrentTechnique.Passes[0].Apply();            // Enable the shader/effect
-            postProcessingShader.Parameters["TimeInSeconds"].SetValue((float) gameTime.TotalGameTime.TotalSeconds);
-            
+
             // let the game world draw itself
             GameStateManager.Draw(gameTime, spriteBatch);
 
@@ -173,10 +169,11 @@ namespace Engine
 
         /// <summary>
         /// Calculates and returns the viewport to use, so that the game world fits on the screen while preserving its aspect ratio.
+        /// Now set to protected because TickTick needs it for shaders.
         /// </summary>
         /// <param name="windowSize">The size of the screen on which the world should be drawn.</param>
         /// <returns>A Viewport object that will show the game world as large as possible while preserving its aspect ratio.</returns>
-        Viewport CalculateViewport(Point windowSize)
+        protected Viewport CalculateViewport(Point windowSize)
         {
             // create a Viewport object
             Viewport viewport = new Viewport();

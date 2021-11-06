@@ -13,11 +13,23 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Effects/AcidShader.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/AcidShader.fx;Effects/AcidShader.fx
+
 #begin Effects/PostProcessingShader.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:Effects/PostProcessingShader.fx
+
+#begin Effects/RainbowShader.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/RainbowShader.fx;Effects/RainbowShader.fx
 
 #begin Effects/TrippyShader.fx
 /importer:EffectImporter
