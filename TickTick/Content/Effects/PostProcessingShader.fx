@@ -9,6 +9,8 @@
 
 Texture2D SpriteTexture;
 
+float TimeInSeconds;
+
 sampler2D SpriteTextureSampler = sampler_state
 {
 	Texture = <SpriteTexture>;

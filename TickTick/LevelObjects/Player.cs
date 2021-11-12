@@ -201,7 +201,7 @@ class Player : AnimatedGameObject
                 sprite.Draw(spriteBatch, GlobalPosition, Origin);
             else {
 
-                Matrix spriteScale = Matrix.CreateScale(TickTick)
+                Matrix spriteScale = Matrix.CreateScale(TickTick);
 
                 spriteBatch.End();
 
