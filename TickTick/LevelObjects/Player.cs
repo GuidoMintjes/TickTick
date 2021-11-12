@@ -201,18 +201,18 @@ class Player : AnimatedGameObject
                 sprite.Draw(spriteBatch, GlobalPosition, Origin);
             else {
 
-                Matrix spriteScale = Matrix.CreateScale(TickTick);
-
                 spriteBatch.End();
 
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, );
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
 
+                level.rainbowShader.Parameters["TimeInSeconds"].SetValue((float) gameTime.TotalGameTime.TotalSeconds);
                 level.rainbowShader.CurrentTechnique.Passes[0].Apply();
                 sprite.Draw(spriteBatch, GlobalPosition, Origin);
 
                 spriteBatch.End();
+                
 
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, );
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
             }
 
 
@@ -374,14 +374,8 @@ class Player : AnimatedGameObject
     }
 
 
-    public void ToggleSpeeding(bool enabled) {
+    public void SetSpeeding(bool enabled) {
 
         IsSpeeding = enabled;
-
-        if(enabled) {
-            base.sprite.SetColour(Color.Red);
-        } else {
-            sprite.SetColour(Color.White);
-        }
     }
 }

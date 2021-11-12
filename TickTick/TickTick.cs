@@ -12,6 +12,8 @@ class TickTick : ExtendedGameWithLevels
     public const float Depth_LevelObjects = 0.6f; // for all game objects except the player
     public const float Depth_LevelPlayer = 0.7f; // for the player
 
+    public static Matrix staticSpriteScale;
+
     public float blurEffect = 5f;
 
     [STAThread]
@@ -51,9 +53,7 @@ class TickTick : ExtendedGameWithLevels
 
         // play background music
         AssetManager.PlaySong("Sounds/snd_music", true);
+
+        staticSpriteScale = spriteScale;
     }
-
-
-
-    public Viewport GetViewPort() => CalculateViewport(windowSize);
 }

@@ -14,6 +14,6 @@ class SpeedBackTimer : Timer {
 
     public override void HandleTimerEnd() {
 
-        level.Player.ToggleSpeeding(false);
+        level.Player.SetSpeeding(false);
     }
 }

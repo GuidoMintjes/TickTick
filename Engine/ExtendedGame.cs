@@ -27,7 +27,7 @@ namespace Engine
         /// <summary>
         /// A matrix used for scaling the game world so that it fits inside the window.
         /// </summary>
-        Matrix spriteScale;
+        protected Matrix spriteScale;
 
         /// <summary>
         /// An object for generating random numbers throughout the game.
