@@ -29,22 +29,24 @@ namespace Engine {
 
         public override void Update(GameTime gameTime) {
 
-            Point newPos = new Point(CameraWindow.X + (int) (camPosChanger.LocalPosition.X - camPosChanger.previousPosition.X),
-                                        CameraWindow.Y + (int) (camPosChanger.LocalPosition.Y - camPosChanger.previousPosition.Y));
+            Point newPos = new Point((int) ((float) CameraWindow.X + (camPosChanger.LocalPosition.X - camPosChanger.previousPosition.X)),
+                                        (int) ((float) CameraWindow.Y + (camPosChanger.LocalPosition.Y - camPosChanger.previousPosition.Y)));
             
-            Rectangle newCameraWindow = new Rectangle(newPos.X, newPos.Y, newPos.X + windowSize.X, newPos.Y + windowSize.Y);
+            Rectangle newCameraWindow = new Rectangle(newPos.X, newPos.Y, CameraWindow.Width, CameraWindow.Height);
 
             CameraWindowChange = new Point(newCameraWindow.X - CameraWindow.X, newCameraWindow.Y - CameraWindow.Y);
 
             if (CameraWindowChange.X != 0 || CameraWindowChange.Y != 0) {
 
-                Console.WriteLine($"{CameraWindowChange.X} --- {CameraWindowChange.Y}");
+                Console.WriteLine($"{CameraWindow.Width} --- {CameraWindow.Height}");
+                Console.WriteLine();
+                Console.WriteLine($"{worldSize.X} --- {worldSize.Y}");
                 Console.WriteLine();
             }
 
             // Limit the camera view to the world
-            Math.Clamp(newCameraWindow.X, 0f, worldSize.X);
-            Math.Clamp(newCameraWindow.Y, 0f, worldSize.Y);
+            Math.Clamp(newCameraWindow.X, 0f, worldSize.X - CameraWindow.Width);
+            Math.Clamp(newCameraWindow.Y, 0f, worldSize.Y - CameraWindow.Height);
 
             CameraWindow = newCameraWindow;
         }
