@@ -38,7 +38,9 @@ partial class Level : GameObjectList
         AddLevelInfoObjects(description);
 
         // Add Camera
-        camera = new Camera(new Point(gridWidth * TileWidth, gridRows.Count * TileHeight), TickTick.GetWindowSize(), Player);
+        TickTick.cameraOffset.W = TileWidth;
+        camera = new Camera(new Point(gridWidth * TileWidth, gridRows.Count * TileHeight), 
+                                TickTick.GetWindowSize(), Player, TickTick.cameraOffset);
         AddChild(camera);
     }
 

@@ -19,13 +19,17 @@ namespace Engine {
 
         public static bool alive = false;
 
+        Vector4 camOffset;
+
         public static Matrix Transform { get; set; }
 
-        public Camera(Point worldSize, Point newWindowSize, SpriteGameObject _camPosChanger) {
+        public Camera(Point _worldSize, Point newWindowSize, SpriteGameObject _camPosChanger, Vector4 _offset) {
 
             camPosChanger = _camPosChanger;
 
-            this.worldSize = worldSize;
+            camOffset = _offset;
+
+            worldSize = _worldSize;
             windowSize = newWindowSize;
 
             CameraWindow = new Rectangle(0, 0, windowSize.X, windowSize.Y);
@@ -45,7 +49,7 @@ namespace Engine {
 
             Console.WriteLine($"X: {newCamPosX} ;;; Y: {newCamPosY}");
 
-            newCamPosX = Math.Clamp(newCamPosX, -(worldSize.X - (CameraWindow.Width / 2)), -584f);
+            newCamPosX = Math.Clamp(newCamPosX, -(worldSize.X - (CameraWindow.Width / 2) + camOffset.W), camOffset.X);
             newCamPosY = Math.Clamp(newCamPosY, -700f, 0f);
 
             Console.WriteLine($"X: {newCamPosX} ;;; Y: {newCamPosY}");
