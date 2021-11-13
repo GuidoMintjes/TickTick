@@ -37,13 +37,21 @@ namespace Engine {
         public void followPlayer() {
 
             // Limit the camera view to the world
-            Math.Clamp(newCameraWindow.X, 0f, worldSize.X - CameraWindow.Width);
-            Math.Clamp(newCameraWindow.Y, 0f, worldSize.Y - CameraWindow.Height);
+            //Math.Clamp(newCameraWindow.X, 0f, worldSize.X - CameraWindow.Width);
+            //Math.Clamp(newCameraWindow.Y, 0f, worldSize.Y - CameraWindow.Height);
 
-            Matrix position = Matrix.CreateTranslation(new Vector3(
-                Math.Clamp(-camPosChanger.GlobalPosition.X - (camPosChanger.BoundingBox.Width / 2)),
-                -camPosChanger.GlobalPosition.Y - (camPosChanger.BoundingBox.Height / 2),
-                0));
+            float newCamPosX = -camPosChanger.GlobalPosition.X - (camPosChanger.BoundingBox.Width / 2);
+            float newCamPosY = -camPosChanger.GlobalPosition.Y - (camPosChanger.BoundingBox.Height / 2);
+
+            Console.WriteLine($"X: {newCamPosX} ;;; Y: {newCamPosY}");
+
+            newCamPosX = Math.Clamp(newCamPosX, -(worldSize.X - (CameraWindow.Width / 2)), -584f);
+            newCamPosY = Math.Clamp(newCamPosY, -700f, 0f);
+
+            Console.WriteLine($"X: {newCamPosX} ;;; Y: {newCamPosY}");
+            Console.WriteLine();
+
+            Matrix position = Matrix.CreateTranslation(new Vector3(newCamPosX, newCamPosY, 0f));
 
             Matrix offset = Matrix.CreateTranslation(new Vector3(
                 windowSize.X / 1.75f,
