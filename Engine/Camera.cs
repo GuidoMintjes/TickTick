@@ -15,9 +15,13 @@ namespace Engine {
 
         public static Rectangle CameraWindow { get; private set; }
 
-        GameObject camPosChanger;
+        SpriteGameObject camPosChanger;
 
-        public Camera(Point worldSize, Point newWindowSize, GameObject _camPosChanger) {
+        public static bool alive = false;
+
+        public static Matrix Transform { get; set; }
+
+        public Camera(Point worldSize, Point newWindowSize, SpriteGameObject _camPosChanger) {
 
             camPosChanger = _camPosChanger;
 
@@ -25,9 +29,35 @@ namespace Engine {
             windowSize = newWindowSize;
 
             CameraWindow = new Rectangle(0, 0, windowSize.X, windowSize.Y);
+
+            alive = true;
+
+        }
+
+        public void followPlayer() {
+
+            // Limit the camera view to the world
+            Math.Clamp(newCameraWindow.X, 0f, worldSize.X - CameraWindow.Width);
+            Math.Clamp(newCameraWindow.Y, 0f, worldSize.Y - CameraWindow.Height);
+
+            Matrix position = Matrix.CreateTranslation(new Vector3(
+                Math.Clamp(-camPosChanger.GlobalPosition.X - (camPosChanger.BoundingBox.Width / 2)),
+                -camPosChanger.GlobalPosition.Y - (camPosChanger.BoundingBox.Height / 2),
+                0));
+
+            Matrix offset = Matrix.CreateTranslation(new Vector3(
+                windowSize.X / 1.75f,
+                windowSize.Y / 1.75f,
+                0));
+
+            Transform = position * offset;
         }
 
         public override void Update(GameTime gameTime) {
+
+            followPlayer();
+
+            /*
 
             Point newPos = new Point((int) ((float) CameraWindow.X + (camPosChanger.LocalPosition.X - camPosChanger.previousPosition.X)),
                                         (int) ((float) CameraWindow.Y + (camPosChanger.LocalPosition.Y - camPosChanger.previousPosition.Y)));
@@ -49,6 +79,11 @@ namespace Engine {
             Math.Clamp(newCameraWindow.Y, 0f, worldSize.Y - CameraWindow.Height);
 
             CameraWindow = newCameraWindow;
+
+            */
+
+
+            
         }
     }
 }

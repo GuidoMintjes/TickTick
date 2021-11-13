@@ -33,10 +33,10 @@ class TickTick : ExtendedGameWithLevels
 
         // set a custom world and window size
         worldSize = new Point(1440, 825);
-        windowSize = new Point(1024, 586);
+        windowSize = new Point(1024, 768);
 
         // create a camera object
-        //Camera camera = new Camera(worldSize, windowSize);
+        //Camera camera = new Camera(worldSize, windowSize, new SpriteGameObject("Sprites/Tiles/spr_platform", 0));
         // To Do: REMOVE
 
         // to let these settings take effect, we need to set the FullScreen property again
@@ -57,6 +57,18 @@ class TickTick : ExtendedGameWithLevels
         // play background music
         //AssetManager.PlaySong("Sounds/snd_music", true); 
         //TO DO: LATER WEER AANZETTEN
+
+        // calculate how the graphics should be scaled, so that the game world fits inside the window
+        //spriteScale = Matrix.CreateScale(windowSize.X / worldSize.X, windowSize.Y / worldSize.Y, 1);
+
+        spriteScale = Matrix.CreateScale((float)GraphicsDevice.Viewport.Width / worldSize.X, 
+                                            (float)GraphicsDevice.Viewport.Height / worldSize.Y, 1);
+
+        Console.WriteLine("Aspectratio = " + GraphicsDevice.Viewport.AspectRatio);
+
+        Console.WriteLine(GraphicsDevice.Viewport.Width);
+        Console.WriteLine(GraphicsDevice.Viewport.Height);
+
 
         staticSpriteScale = spriteScale;
     }

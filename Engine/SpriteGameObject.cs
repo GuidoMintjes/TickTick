@@ -56,7 +56,7 @@ namespace Engine {
 
             // draw the sprite at its *global* position in the game world
             if (sprite != null)
-                sprite.Draw(spriteBatch, GlobalPosition, Origin); //ADD CAMERA POSITION HERE
+                sprite.Draw(spriteBatch, GlobalPosition, Origin);
         }
 
         /// <summary>

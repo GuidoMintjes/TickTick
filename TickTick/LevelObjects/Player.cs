@@ -197,22 +197,30 @@ class Player : AnimatedGameObject
         // draw the sprite at its *global* position in the game world
         if (sprite != null)
 
-            if (!IsSpeeding)
-                sprite.Draw(spriteBatch, GlobalPosition, Origin);
-            else {
+            if (!IsSpeeding) {
+                //sprite.Draw(spriteBatch, GlobalPosition, Origin);
 
                 spriteBatch.End();
 
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+                sprite.Draw(spriteBatch, GlobalPosition, Origin);
+                spriteBatch.End();
 
-                level.rainbowShader.Parameters["TimeInSeconds"].SetValue((float) gameTime.TotalGameTime.TotalSeconds);
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+            } else {
+
+                spriteBatch.End();
+
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+
+                level.rainbowShader.Parameters["TimeInSeconds"].SetValue((float)gameTime.TotalGameTime.TotalSeconds);
                 level.rainbowShader.CurrentTechnique.Passes[0].Apply();
                 sprite.Draw(spriteBatch, GlobalPosition, Origin);
 
                 spriteBatch.End();
-                
 
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
+
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
             }
 
 

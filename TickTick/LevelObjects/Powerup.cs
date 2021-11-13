@@ -11,6 +11,6 @@ class Powerup : CollectibleObject {
         Visible = false;
         level.Player.SetSpeeding(true);
 
-        level.SpeedTimer.StartTimer(30f);    //TODO UNMAGIC THIS NUMBER
+        level.SpeedTimer.StartTimer(3f);    //TODO UNMAGIC THIS NUMBER
     }
 }

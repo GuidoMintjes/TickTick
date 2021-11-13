@@ -90,6 +90,7 @@ namespace Engine
             // default window and world size
             windowSize = new Point(1024, 768);
             worldSize = new Point(1024, 768);
+
         }
 
         /// <summary>
@@ -148,8 +149,12 @@ namespace Engine
         {
             GraphicsDevice.Clear(Color.Black);
 
+            if (Camera.alive) spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+
+            else spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, spriteScale);
+
             // start drawing sprites, applying the scaling matrix
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, spriteScale);
+            //spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null,Camera.Transform);
 
 
             // let the game world draw itself
@@ -176,6 +181,9 @@ namespace Engine
             // scale the window to the desired size
             graphics.PreferredBackBufferWidth = screenSize.X;
             graphics.PreferredBackBufferHeight = screenSize.Y;
+
+            Console.WriteLine("ScreensizeX = " + screenSize.X);
+            Console.WriteLine("ScreensizeY = " + screenSize.Y);
 
             graphics.ApplyChanges();
 
