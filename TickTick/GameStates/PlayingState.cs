@@ -3,6 +3,7 @@ using Engine.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 class PlayingState : GameState, IPlayingState
 {
@@ -14,7 +15,8 @@ class PlayingState : GameState, IPlayingState
     {
         // add a "quit" button
         quitButton = new Button("Sprites/UI/spr_button_quit", 1);
-        quitButton.LocalPosition = new Vector2(1290, 20);
+        quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, 30);
+        Console.WriteLine($"LocalPos: {quitButton.LocalPosition} GlobalPos: {quitButton.GlobalPosition}");
         gameObjects.AddChild(quitButton);
 
         // add overlay images
@@ -31,7 +33,7 @@ class PlayingState : GameState, IPlayingState
     {
         SpriteGameObject result = new SpriteGameObject(spriteName, 1);
         result.SetOriginToCenter();
-        result.LocalPosition = new Vector2(720, 412);
+        result.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 2, TickTick.GetWindowSize().Y / 2);
         gameObjects.AddChild(result);
         return result;
     }
@@ -76,6 +78,8 @@ class PlayingState : GameState, IPlayingState
 
         // show or hide the "game over" image
         gameOverOverlay.Visible = !level.Player.IsAlive;
+
+        Console.WriteLine($"LocalPos: {quitButton.LocalPosition} GlobalPos: {quitButton.GlobalPosition}");
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -89,6 +93,10 @@ class PlayingState : GameState, IPlayingState
     {
         level = new Level(levelIndex, ExtendedGame.ContentRootDirectory + "/Levels/level" + levelIndex + ".txt");
 
+        quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, 30);
+        completedOverlay.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 1.75f, TickTick.GetWindowSize().Y / 2);
+        gameOverOverlay.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 1.75f, TickTick.GetWindowSize().Y / 2);
+
         // hide the overlay images
         completedOverlay.Visible = false;
         gameOverOverlay.Visible = false;
@@ -99,10 +107,12 @@ class PlayingState : GameState, IPlayingState
         // show an overlay image
         completedOverlay.Visible = true;
 
+
         // play a sound
         ExtendedGame.AssetManager.PlaySoundEffect("Sounds/snd_won");
 
         // mark the level as solved, and unlock the next level
         ExtendedGameWithLevels.MarkLevelAsSolved(levelIndex);
+
     }
 }

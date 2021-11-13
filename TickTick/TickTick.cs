@@ -61,18 +61,6 @@ class TickTick : ExtendedGameWithLevels
         //AssetManager.PlaySong("Sounds/snd_music", true); 
         //TO DO: LATER WEER AANZETTEN
 
-        // calculate how the graphics should be scaled, so that the game world fits inside the window
-        //spriteScale = Matrix.CreateScale(windowSize.X / worldSize.X, windowSize.Y / worldSize.Y, 1);
-
-        spriteScale = Matrix.CreateScale((float)GraphicsDevice.Viewport.Width / worldSize.X, 
-                                            (float)GraphicsDevice.Viewport.Height / worldSize.Y, 1);
-
-        Console.WriteLine("Aspectratio = " + GraphicsDevice.Viewport.AspectRatio);
-
-        Console.WriteLine(GraphicsDevice.Viewport.Width);
-        Console.WriteLine(GraphicsDevice.Viewport.Height);
-
-
         staticSpriteScale = spriteScale;
     }
 

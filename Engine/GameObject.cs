@@ -67,13 +67,10 @@ namespace Engine
         {
             previousPosition = localPosition;
 
-            if (this.ToString() != "Player")
-                LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds -
-                    new Vector2(Camera.CameraWindowChange.X, Camera.CameraWindowChange.Y);
-            else
-                LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (IsUI) {
 
-            //GlobalPosition -= new Vector2(Camera.CameraWindow.X, Camera.CameraWindow.Y);
+                LocalPosition -= Camera.cameraChange;
+            } else LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         /// <summary>

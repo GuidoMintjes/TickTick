@@ -153,10 +153,6 @@ namespace Engine
 
             else spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, spriteScale);
 
-            // start drawing sprites, applying the scaling matrix
-            //spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null,Camera.Transform);
-
-
             // let the game world draw itself
             GameStateManager.Draw(gameTime, spriteBatch);
 
@@ -181,9 +177,6 @@ namespace Engine
             // scale the window to the desired size
             graphics.PreferredBackBufferWidth = screenSize.X;
             graphics.PreferredBackBufferHeight = screenSize.Y;
-
-            Console.WriteLine("ScreensizeX = " + screenSize.X);
-            Console.WriteLine("ScreensizeY = " + screenSize.Y);
 
             graphics.ApplyChanges();
 

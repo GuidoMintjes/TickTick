@@ -9,14 +9,12 @@ namespace Engine {
     
     public class Camera : GameObject {
 
-        Point worldSize; 
+        Point worldSize;
         Point windowSize;
 
-        public static Point CameraWindowChange { get; private set; } //TODO: Un-static
-
-        static Rectangle CameraWindow { get; set; }
-
         SpriteGameObject camPosChanger;
+
+        public static Vector2 cameraChange;
 
         public static bool alive = false; //TODO: Un-static?
 
@@ -28,12 +26,12 @@ namespace Engine {
 
             camPosChanger = _camPosChanger;
 
+            Transform = new Matrix();
+
             camOffset = _offset;
 
             worldSize = _worldSize;
             windowSize = newWindowSize;
-
-            CameraWindow = new Rectangle(0, 0, windowSize.X, windowSize.Y);
 
             alive = true;
         }
@@ -43,13 +41,8 @@ namespace Engine {
             float newCamPosX = -camPosChanger.GlobalPosition.X - (camPosChanger.BoundingBox.Width / 2);
             float newCamPosY = -camPosChanger.GlobalPosition.Y - (camPosChanger.BoundingBox.Height / 2);
 
-            Console.WriteLine($"X: {newCamPosX} ;;; Y: {newCamPosY}");
-
-            newCamPosX = Math.Clamp(newCamPosX, -(worldSize.X - (CameraWindow.Width / 2) + camOffset.W), camOffset.X);
+            newCamPosX = Math.Clamp(newCamPosX, -(worldSize.X - (windowSize.X / 2) + camOffset.W - camOffset.W * 1/1.15f), camOffset.X * 1.15f); //TODO: UNMAGIC
             newCamPosY = Math.Clamp(newCamPosY, -700f, 0f);
-
-            Console.WriteLine($"X: {newCamPosX} ;;; Y: {newCamPosY}");
-            Console.WriteLine();
 
             Matrix position = Matrix.CreateTranslation(new Vector3(newCamPosX, newCamPosY, 0f));
 
@@ -58,7 +51,18 @@ namespace Engine {
                 windowSize.Y / 1.75f,
                 0));
 
-            Transform = position * offset;
+            position.M44 = 1.15f; //TODO: UNMAGIC
+
+            Matrix newTransform = position * offset;
+
+            cameraChange = new Vector2(newTransform.M41 - Transform.M41, newTransform.M42 - Transform.M42);
+
+            Transform = newTransform;
+        }
+
+        public void Reset() {
+
+
         }
     }
 }
