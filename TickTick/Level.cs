@@ -48,6 +48,7 @@ partial class Level : GameObjectList
 
         // add the timer
         timer = new BombTimer();
+        timer.SetScreenSpace(true);
         AddChild(timer);
 
         stimer = new SpeedBackTimer(this);

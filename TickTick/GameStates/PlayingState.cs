@@ -79,7 +79,6 @@ class PlayingState : GameState, IPlayingState
         // show or hide the "game over" image
         gameOverOverlay.Visible = !level.Player.IsAlive;
 
-        Console.WriteLine($"LocalPos: {quitButton.LocalPosition} GlobalPos: {quitButton.GlobalPosition}");
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
