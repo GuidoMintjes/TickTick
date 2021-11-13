@@ -20,6 +20,11 @@ class PlayingState : GameState, IPlayingState
         // add overlay images
         completedOverlay = AddOverlay("Sprites/UI/spr_welldone");
         gameOverOverlay = AddOverlay("Sprites/UI/spr_gameover");
+
+        // These are part of the UI, even though they are not always shown, so set them fixed to the screen
+        //  instead of moving along with the camera by setting their UI bool to be true
+        completedOverlay.SetScreenSpace(true);
+        gameOverOverlay.SetScreenSpace(true);
     }
 
     SpriteGameObject AddOverlay(string spriteName)

@@ -42,11 +42,11 @@ namespace Engine {
                 Console.WriteLine();
             }
 
-            CameraWindow = newCameraWindow;
-
             // Limit the camera view to the world
-            Math.Clamp(CameraWindow.X, 0f, worldSize.X);
-            Math.Clamp(CameraWindow.Y, 0f, worldSize.Y);
+            Math.Clamp(newCameraWindow.X, 0f, worldSize.X);
+            Math.Clamp(newCameraWindow.Y, 0f, worldSize.Y);
+
+            CameraWindow = newCameraWindow;
         }
     }
 }

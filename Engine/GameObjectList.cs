@@ -50,8 +50,9 @@ namespace Engine
         public override void Update(GameTime gameTime)
         {
             foreach (GameObject obj in children) {
-                    
-                obj.Update(gameTime);
+                
+                if(!obj.IsUI)
+                    obj.Update(gameTime);
             }
         }
 

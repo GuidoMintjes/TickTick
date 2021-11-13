@@ -18,6 +18,7 @@
         public Button(string assetName, float depth) : base(assetName, depth)
         {
             Pressed = false;
+            IsUI = true;
         }
 
         public override void HandleInput(InputHelper inputHelper)

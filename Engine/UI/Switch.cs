@@ -16,6 +16,7 @@
         public Switch(string assetName, float depth) : base(assetName, depth)
         {
             Selected = false;
+            IsUI = true;
         }
 
         /// <summary>

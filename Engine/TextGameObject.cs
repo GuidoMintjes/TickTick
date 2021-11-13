@@ -80,6 +80,7 @@ namespace Engine
                 Color, 0f, origin, 1, SpriteEffects.None, depth);
         }
 
+
         /// <summary>
         /// Gets the x-coordinate to use as an origin for drawing the text.
         /// This coordinate depends on the horizontal alignment and the width of the text.

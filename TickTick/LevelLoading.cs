@@ -48,12 +48,14 @@ partial class Level : GameObjectList
         SpriteGameObject frame = new SpriteGameObject("Sprites/UI/spr_frame_hint", TickTick.Depth_UIBackground);
         frame.SetOriginToCenter();
         frame.LocalPosition = new Vector2(720, 50);
+        frame.SetScreenSpace(true);      // This makes sure this text is counted towards UI and is not moved with camera
         AddChild(frame);
 
         // - text
         TextGameObject hintText = new TextGameObject("Fonts/HintFont", TickTick.Depth_UIForeground, Color.Black, TextGameObject.Alignment.Left);
         hintText.Text = description;
         hintText.LocalPosition = new Vector2(510, 40);
+        hintText.SetScreenSpace(true);      // This makes sure this text is counted towards UI and is not moved with camera
         AddChild(hintText);
     }
 

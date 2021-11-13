@@ -32,6 +32,9 @@ namespace Engine
         /// </summary>
         public GameObject Parent { get; set; }
 
+
+        public bool IsUI = false;
+
         /// <summary>
         /// Creates a new GameObject.
         /// </summary>
@@ -65,7 +68,7 @@ namespace Engine
             previousPosition = localPosition;
 
             LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds - 
-                new Vector2(Camera.CameraWindow.X, Camera.CameraWindow.Y);
+                new Vector2(Camera.CameraWindowChange.X, Camera.CameraWindowChange.Y);
 
             //GlobalPosition -= new Vector2(Camera.CameraWindow.X, Camera.CameraWindow.Y);
         }
@@ -87,6 +90,16 @@ namespace Engine
         public virtual void Reset()
         {
             velocity = Vector2.Zero;
+        }
+
+
+        /// <summary>
+        /// This function sets the IsUI bool, which dictates whether an object has to move with the camera or not
+        /// </summary>
+        /// <param name="screenSpaced">The set value for IsUI</param>
+        public void SetScreenSpace(bool screenSpaced) {
+
+            IsUI = screenSpaced;
         }
 
         /// <summary>

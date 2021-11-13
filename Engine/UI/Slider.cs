@@ -39,6 +39,8 @@ namespace Engine.UI
             // by default, start at the minimum value
             previousValue = this.minValue;
             Value = previousValue;
+
+            IsUI = true;
         }
 
         public override void HandleInput(InputHelper inputHelper)
