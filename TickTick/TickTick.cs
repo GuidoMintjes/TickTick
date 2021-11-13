@@ -16,7 +16,7 @@ class TickTick : ExtendedGameWithLevels
 
     public float blurEffect = 5f;
 
-    public static Vector4 cameraOffset;
+    public static Vector4 cameraOffset; //todo: make not static
 
     [STAThread]
     static void Main()
