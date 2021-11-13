@@ -42,6 +42,9 @@ namespace Engine
             Visible = true;
         }
 
+        public Vector2 previousPosition;
+
+
         /// <summary>
         /// Performs input handling for this GameObject. 
         /// By default, this method does nothing, but you can override it.
@@ -59,7 +62,12 @@ namespace Engine
         /// <param name="gameTime">An object containing information about the time that has passed.</param>
         public virtual void Update(GameTime gameTime)
         {
-            LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            previousPosition = localPosition;
+
+            LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds - 
+                new Vector2(Camera.CameraWindow.X, Camera.CameraWindow.Y);
+
+            //GlobalPosition -= new Vector2(Camera.CameraWindow.X, Camera.CameraWindow.Y);
         }
 
         /// <summary>

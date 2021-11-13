@@ -28,14 +28,17 @@ class TickTick : ExtendedGameWithLevels
         IsMouseVisible = true;
     }
 
-    protected override void LoadContent()
-    {
+    protected override void LoadContent() {
         base.LoadContent();
 
         // set a custom world and window size
         worldSize = new Point(1440, 825);
         windowSize = new Point(1024, 586);
-        
+
+        // create a camera object
+        //Camera camera = new Camera(worldSize, windowSize);
+        // To Do: REMOVE
+
         // to let these settings take effect, we need to set the FullScreen property again
         FullScreen = false;
 
@@ -52,8 +55,14 @@ class TickTick : ExtendedGameWithLevels
         GameStateManager.SwitchTo(StateName_Title);
 
         // play background music
-        AssetManager.PlaySong("Sounds/snd_music", true);
+        //AssetManager.PlaySong("Sounds/snd_music", true); 
+        //TO DO: LATER WEER AANZETTEN
 
         staticSpriteScale = spriteScale;
+    }
+
+    public Point GetWindowSize() {
+
+        return windowSize;
     }
 }

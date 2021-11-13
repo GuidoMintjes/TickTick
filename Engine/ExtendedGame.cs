@@ -56,6 +56,25 @@ namespace Engine
 
 
         /// <summary>
+        /// Gets the window size
+        /// </summary>
+        /// <returns> windowSize </returns>
+        protected Point GetWindowSize() {
+
+            return windowSize;
+        }
+
+        /// <summary>
+        /// Gets the world size
+        /// </summary>
+        /// <returns> worldSize </returns>
+        protected Point GetWorldSize() {
+
+            return worldSize;
+        }
+
+
+        /// <summary>
         /// Creates a new ExtendedGame object.
         /// </summary>
         protected ExtendedGame()

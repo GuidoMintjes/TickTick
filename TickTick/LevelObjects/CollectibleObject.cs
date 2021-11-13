@@ -23,6 +23,8 @@ class CollectibleObject : SpriteGameObject {
 
     public override void Update(GameTime gameTime) {
 
+        base.Update(gameTime);
+
         double t = gameTime.TotalGameTime.TotalSeconds * 3.0f + LocalPosition.X;
         bounce = (float)Math.Sin(t) * 0.2f;
         localPosition.Y += bounce;

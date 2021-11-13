@@ -23,9 +23,12 @@ partial class Level : GameObjectList
 
     bool completionDetected;
 
-
     // To handle shaders for individual sprites
     public Effect rainbowShader;    //TODO: ADD ON BETTER SPOT AND REMOVE HERE
+
+
+    // Our main camera
+    Camera camera;
 
 
     public Level(int levelIndex, string filename)
@@ -47,10 +50,8 @@ partial class Level : GameObjectList
         timer = new BombTimer();
         AddChild(timer);
 
-
         stimer = new SpeedBackTimer(this);
         AddChild(stimer);
-
 
         // add mountains in the background
         for (int i = 0; i < 4; i++)
@@ -68,6 +69,7 @@ partial class Level : GameObjectList
         // add clouds
         for (int i = 0; i < 6; i++)
             backgrounds.AddChild(new Cloud(this));
+
 
 
         // Load in shaders
@@ -138,6 +140,7 @@ partial class Level : GameObjectList
             timer.Running = false;
         }
 
+        // cheat to skip level
         if (Keyboard.GetState().IsKeyDown(Keys.O)) {
 
             completionDetected = true;

@@ -149,12 +149,11 @@ class Player : AnimatedGameObject
     public override void Update(GameTime gameTime)
     {
 
-        Vector2 previousPosition = localPosition;
+        previousPosition = localPosition;
 
         if (IsSpeeding) {
-            desiredHorizontalSpeed *= speedUpMultiplier;
 
-            // To-Do: start timer to end speedup
+            desiredHorizontalSpeed *= speedUpMultiplier;
         }
 
 
@@ -183,6 +182,7 @@ class Player : AnimatedGameObject
         }
             
         downPressed = false;
+
     }
 
 
