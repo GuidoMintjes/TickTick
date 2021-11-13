@@ -22,7 +22,7 @@ namespace Engine
         /// <summary>
         /// The width and height of the window, in pixels.
         /// </summary>
-        protected Point windowSize;
+        protected static Point windowSize; // TODO: MAAK HET NIET MEER STATIC
 
         /// <summary>
         /// A matrix used for scaling the game world so that it fits inside the window.

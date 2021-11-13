@@ -61,7 +61,8 @@ class TickTick : ExtendedGameWithLevels
         staticSpriteScale = spriteScale;
     }
 
-    public Point GetWindowSize() {
+    // TODO MAAK HET NIET MEER STATIC
+    public static Point GetWindowSize() {
 
         return windowSize;
     }

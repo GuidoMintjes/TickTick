@@ -36,6 +36,12 @@ namespace Engine {
 
             CameraWindowChange = new Point(newCameraWindow.X - CameraWindow.X, newCameraWindow.Y - CameraWindow.Y);
 
+            if (CameraWindowChange.X != 0 || CameraWindowChange.Y != 0) {
+
+                Console.WriteLine($"{CameraWindowChange.X} --- {CameraWindowChange.Y}");
+                Console.WriteLine();
+            }
+
             CameraWindow = newCameraWindow;
 
             // Limit the camera view to the world
