@@ -34,6 +34,14 @@ partial class Level : GameObjectList
         // create all game objects for the grid
         AddPlayingField(gridRows, gridWidth, gridRows.Count);
 
+
+        // Add a counter indicating the amount of water drops to collect
+        waterDropCount = new TextGameObject("Fonts/MainFont", 0, Color.BlueViolet);
+        waterDropCount.Text = "Remaining: " + waterDrops.Count.ToString();
+        waterDropCount.LocalPosition = new Vector2(TickTick.GetWindowSize().X - TileWidth, TickTick.GetWindowSize().Y / 25);
+        waterDropCount.SetScreenSpace(true);
+        AddChild(waterDropCount);
+
         // add game objects to show that general level info
         AddLevelInfoObjects(description);
 

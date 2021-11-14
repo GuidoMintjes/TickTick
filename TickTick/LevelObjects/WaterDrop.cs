@@ -8,6 +8,13 @@ class WaterDrop : CollectibleObject {
 
     public virtual void MoveDrop(GameTime gametime) { }
 
+    public override void Update(GameTime gameTime) {
+
+        level.DecreaseDropCount();
+        
+        base.Update(gameTime);
+    }
+
     public override void HandleCollision() {
 
     }

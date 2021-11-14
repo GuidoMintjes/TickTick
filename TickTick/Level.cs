@@ -15,6 +15,7 @@ partial class Level : GameObjectList
 
     Tile[,] tiles;
     List<WaterDrop> waterDrops;
+    TextGameObject waterDropCount;
 
     public Player Player { get; private set; }
     public int LevelIndex { get; private set; }
@@ -169,6 +170,23 @@ partial class Level : GameObjectList
         }
     }
 
+
+    public void DecreaseDropCount() {
+
+        int dropCount = 0;
+
+        foreach (WaterDrop drop in waterDrops) {
+
+            if (drop.Visible)
+                dropCount++;
+        }
+
+        if (dropCount > 0)
+            waterDropCount.Text = "Remaining: " + dropCount;
+        else
+            waterDropCount.Text = "Drops collected!";
+    }
+
     /// <summary>
     /// Checks and returns whether the player has collected all water drops in this level.
     /// </summary>
@@ -189,4 +207,3 @@ partial class Level : GameObjectList
         completionDetected = false;
     }
 }
-
