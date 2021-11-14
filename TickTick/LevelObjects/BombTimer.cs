@@ -20,8 +20,6 @@ class BombTimer : GameObjectList
         defaultTime = time;
 
         localPosition = new Vector2(TickTick.window.X / 15, TickTick.window.Y / 30);
-        // Make sure this object moves with the camera
-        SetScreenSpace(true);
         
         // add a background image
         SpriteGameObject background = new SpriteGameObject("Sprites/UI/spr_timer", TickTick.Depth_UIBackground);
@@ -36,7 +34,6 @@ class BombTimer : GameObjectList
         AddChild(tijd);
 
         Reset();
-
     }
 
 
@@ -78,10 +75,7 @@ class BombTimer : GameObjectList
                 ExtendedGame.AssetManager.PlaySoundEffect("Sounds/snd_beep_high");
             else if (secondsLeft <= 10) // low beep
                 ExtendedGame.AssetManager.PlaySoundEffect("Sounds/snd_beep");
-        }
-
-        // TODO: Remove this and make sure SetScreenSpace works
-        //localPosition = Camera.cameraChange;
+        };
     }
 
     public override void Reset()

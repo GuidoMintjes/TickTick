@@ -95,8 +95,8 @@ class PlayingState : GameState, IPlayingState
         level = new Level(levelIndex, ExtendedGame.ContentRootDirectory + "/Levels/level" + levelIndex + ".txt");
 
         //quitButton.LocalPosition = new Vector2(TickTick.window.X, TickTick.window.Y / 25);
-        completedOverlay.LocalPosition = new Vector2(TickTick.window.X / 1.75f, TickTick.window.Y / 3);
-        gameOverOverlay.LocalPosition = new Vector2(TickTick.window.X / 1.75f, TickTick.window.Y / 3);
+        completedOverlay.LocalPosition = new Vector2(TickTick.window.X / 2, TickTick.window.Y / 3);
+        gameOverOverlay.LocalPosition = new Vector2(TickTick.window.X / 2, TickTick.window.Y / 3);
 
         // hide the overlay images
         completedOverlay.Visible = false;
