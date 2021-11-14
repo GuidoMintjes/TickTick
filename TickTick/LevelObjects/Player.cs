@@ -171,13 +171,13 @@ class Player : AnimatedGameObject
         base.Update(gameTime);
 
         if (OffsetGlobalPosition.Y / TickTick.window.Y < 0.3)
-            camera.MoveCamera(new Point(0, -6));
+            camera.MoveCamera(new Point(0, -10));
         if (OffsetGlobalPosition.Y / TickTick.window.Y > 0.85)
-            camera.MoveCamera(new Point(0, 6));
+            camera.MoveCamera(new Point(0, 10));
         if (OffsetGlobalPosition.X / TickTick.window.X < 0.5)
-            camera.MoveCamera(new Point(-6, 0));
-        if (OffsetGlobalPosition.X / TickTick.window.X > 1)
-            camera.MoveCamera(new Point(6, 0));
+            camera.MoveCamera(new Point(-10, 0));
+        if (OffsetGlobalPosition.X / TickTick.window.X > 0.7)
+            camera.MoveCamera(new Point(10, 0));
 
         if (IsAlive)
         {
