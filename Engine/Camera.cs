@@ -10,20 +10,16 @@ namespace Engine {
 
         public static bool alive = false; //TODO: Un-static?
 
-        private static Point cameraPos, desiredCameraPosition;
-
+        private static Point cameraPos;
 
         private Point windowSize;
+
         private Rectangle WorldRectangle { get; set; }
-
-
 
         public Camera(Point windowSize, Rectangle levelSize) {
 
             this.windowSize = windowSize;
             WorldRectangle = levelSize;
-
-            desiredCameraPosition = Point.Zero;
 
             alive = true;
 
