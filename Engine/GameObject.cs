@@ -32,7 +32,7 @@ namespace Engine
         /// </summary>
         public GameObject Parent { get; set; }
 
-
+        // Is this object part of the UI or not? False by default
         public bool IsUI = false;
 
         /// <summary>
@@ -67,10 +67,9 @@ namespace Engine
         {
             previousPosition = localPosition;
 
-            if (IsUI) {
+            if (IsUI) LocalPosition -= Camera.cameraChange;
 
-                LocalPosition -= Camera.cameraChange;
-            } else LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            else LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         /// <summary>

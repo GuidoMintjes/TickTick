@@ -51,7 +51,6 @@ namespace Engine
         {
             foreach (GameObject obj in children) {
                 
-                //if(!obj.IsUI)
                     obj.Update(gameTime);
             }
         }

@@ -16,7 +16,9 @@ class BombTimer : GameObjectList
 
     public BombTimer()
     {
-        localPosition = new Vector2(TickTick.GetWindowSize().X /4, 20);
+        localPosition = new Vector2(TickTick.GetWindowSize().X / 15, 20);
+        // Make sure this object doesnt move with the camera
+        SetScreenSpace(true);
         
         // add a background image
         SpriteGameObject background = new SpriteGameObject("Sprites/UI/spr_timer", TickTick.Depth_UIBackground);
@@ -25,17 +27,13 @@ class BombTimer : GameObjectList
         // add a text
         label = new TextGameObject("Fonts/MainFont", TickTick.Depth_UIForeground, Color.Yellow, TextGameObject.Alignment.Center);
         label.LocalPosition = new Vector2(50,25);
-        label.SetScreenSpace(true);
         AddChild(label);
         tijd = new TextGameObject("Fonts/MainFont", TickTick.Depth_UIForeground, Color.Yellow, TextGameObject.Alignment.Center);
         tijd.LocalPosition = new Vector2(150, 25);
-        tijd.SetScreenSpace(true);
         AddChild(tijd);
 
         Reset();
 
-        // Make sure this object doesnt move with the camera
-        SetScreenSpace(true);
     }
 
     public override void Update(GameTime gameTime)
@@ -66,6 +64,10 @@ class BombTimer : GameObjectList
             else if (secondsLeft <= 10) // low beep
                 ExtendedGame.AssetManager.PlaySoundEffect("Sounds/snd_beep");
         }
+
+        // TODO: Remove this and make sure SetScreenSpace works?
+        Console.WriteLine($"Localpos: {localPosition}");
+        localPosition -= Camera.cameraChange;
     }
 
     public override void Reset()
