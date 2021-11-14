@@ -51,7 +51,7 @@ partial class Level : GameObjectList
         // - background box
         SpriteGameObject frame = new SpriteGameObject("Sprites/UI/spr_frame_hint", TickTick.Depth_UIBackground);
         frame.SetOriginToCenter();
-        frame.LocalPosition = new Vector2(TickTick.window.X / 1.75f, TickTick.window.Y / 15);
+        frame.LocalPosition = new Vector2(TickTick.window.X / 2f, TickTick.window.Y / 15);
         frame.SetScreenSpace(true);      // This makes sure this text is counted towards UI and is not moved with camera
         AddChild(frame);
 
