@@ -197,7 +197,7 @@ class Player : AnimatedGameObject
 
     }
 
-
+    /*
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
 
         //float totalTime = (float) gameTime.TotalGameTime.TotalSeconds;
@@ -239,6 +239,7 @@ class Player : AnimatedGameObject
 
         //base.Draw(gameTime, spriteBatch);
     }
+    */
 
     void ApplyFriction(GameTime gameTime)
     {

@@ -6,17 +6,17 @@ using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace Engine {
-    
     public class Camera : GameObject {
-
 
         public static bool alive = false; //TODO: Un-static?
 
         private static Point cameraPos, desiredCameraPosition;
 
-        private Rectangle WorldRectangle { get; set; }
 
         private Point windowSize;
+        private Rectangle WorldRectangle { get; set; }
+
+
 
         public Camera(Point windowSize, Rectangle levelSize) {
 
@@ -29,6 +29,7 @@ namespace Engine {
 
             CamReset();
         }
+
 
         /// <summary>
         /// Moves the camera object by an amount of pixels
@@ -49,6 +50,7 @@ namespace Engine {
             }
         }
 
+
         /// <summary>
         /// Returns a Vector2 that holds camera X and Y values
         /// </summary>
@@ -57,6 +59,7 @@ namespace Engine {
 
             return new Vector2(cameraPos.X, cameraPos.Y);
         }
+
 
         public void CamReset() {
 

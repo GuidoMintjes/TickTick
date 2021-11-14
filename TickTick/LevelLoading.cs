@@ -36,7 +36,7 @@ partial class Level : GameObjectList
 
 
         // Add a counter indicating the amount of water drops to collect
-        waterDropCount = new TextGameObject("Fonts/MainFont", 0, Color.BlueViolet);
+        waterDropCount = new TextGameObject("Fonts/MainFont", 1, Color.BlueViolet);
         waterDropCount.Text = "Remaining: " + waterDrops.Count.ToString();
         waterDropCount.LocalPosition = new Vector2(TickTick.window.X / 32 * 27, TickTick.window.Y / 25);
         waterDropCount.SetScreenSpace(true);

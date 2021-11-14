@@ -67,6 +67,7 @@ namespace Engine {
                     sprite.Draw(spriteBatch, OffsetGlobalPosition, Origin);
 
                 } else {
+
                     sprite.Draw(spriteBatch, GlobalPosition, Origin);
                 }
             }
