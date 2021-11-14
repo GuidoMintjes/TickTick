@@ -14,9 +14,11 @@ class PlayingState : GameState, IPlayingState
     public PlayingState()
     {
         // add a "quit" button
-        quitButton = new Button("Sprites/UI/spr_button_quit", 1);
-        quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, TickTick.GetWindowSize().Y / 25);
-        gameObjects.AddChild(quitButton);
+        //quitButton = new Button("Sprites/UI/spr_button_quit", 1);
+        //quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, TickTick.GetWindowSize().Y / 25);
+        //gameObjects.AddChild(quitButton);
+
+        // Removed quit button: TODO: add functionality ==> 'ESC' = 'back'
 
         // add overlay images
         completedOverlay = AddOverlay("Sprites/UI/spr_welldone");
@@ -62,7 +64,7 @@ class PlayingState : GameState, IPlayingState
             {
                 level.HandleInput(inputHelper);
 
-                if (quitButton.Pressed)
+                if (inputHelper.KeyPressed(Keys.Escape))
                     ExtendedGame.GameStateManager.SwitchTo(ExtendedGameWithLevels.StateName_LevelSelect);
             }
         }
@@ -91,7 +93,7 @@ class PlayingState : GameState, IPlayingState
     {
         level = new Level(levelIndex, ExtendedGame.ContentRootDirectory + "/Levels/level" + levelIndex + ".txt");
 
-        quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, TickTick.GetWindowSize().Y / 25);
+        //quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, TickTick.GetWindowSize().Y / 25);
         completedOverlay.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 1.75f, TickTick.GetWindowSize().Y / 3);
         gameOverOverlay.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 1.75f, TickTick.GetWindowSize().Y / 3);
 

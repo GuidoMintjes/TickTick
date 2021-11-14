@@ -130,13 +130,13 @@ namespace Engine
         {
             inputHelper.Update();
 
-            // quit the game when the player presses ESC
-            if (inputHelper.KeyPressed(Keys.Escape))
+            // quit the level or game when not playing when the player presses ESC
+            if (inputHelper.KeyPressed(Keys.Escape) && GameStateManager.currentGameState.ToString() != "PlayingState")
                 Exit();
 
             // toggle full-screen mode when the player presses F5
-            if (inputHelper.KeyPressed(Keys.F5))
-                FullScreen = !FullScreen;
+            //if (inputHelper.KeyPressed(Keys.F5))
+                //FullScreen = !FullScreen;
 
             GameStateManager.HandleInput(inputHelper);
         }

@@ -15,7 +15,7 @@ partial class Level : GameObjectList
         string description = reader.ReadLine();
 
         // read the rows of the grid; keep track of the longest row
-        int gridWidth = 0;
+        gridWidth = 0;
 
         List<string> gridRows = new List<string>();
         string line = reader.ReadLine();

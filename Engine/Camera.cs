@@ -60,9 +60,10 @@ namespace Engine {
             Transform = newTransform;
         }
 
+
         public void Reset() {
 
-
+            Transform = new Matrix(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
         }
     }
 }

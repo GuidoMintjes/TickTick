@@ -11,6 +11,8 @@ partial class Level : GameObjectList
     public const int TileWidth = 72;
     public const int TileHeight = 55;
 
+    private int gridWidth;
+
     Tile[,] tiles;
     List<WaterDrop> waterDrops;
 
@@ -37,9 +39,16 @@ partial class Level : GameObjectList
 
         // load the background
         GameObjectList backgrounds = new GameObjectList();
+        backgrounds.SetScreenSpace(true);
         SpriteGameObject backgroundSky = new SpriteGameObject("Sprites/Backgrounds/spr_sky", TickTick.Depth_Background);
-        backgroundSky.LocalPosition = new Vector2(0, 825 - backgroundSky.Height);
+        SpriteGameObject backgroundSky2 = new SpriteGameObject("Sprites/Backgrounds/spr_sky", TickTick.Depth_Background);
+        SpriteGameObject backgroundSky3 = new SpriteGameObject("Sprites/Backgrounds/spr_sky", TickTick.Depth_Background);
+        backgroundSky.LocalPosition = new Vector2(-20, 825 - backgroundSky.Height);
+        backgroundSky2.LocalPosition = new Vector2(-20 + backgroundSky.Width, 825 - backgroundSky.Height);
+        backgroundSky3.LocalPosition = new Vector2(-20 + 2 * backgroundSky.Width, 825 - backgroundSky.Height);
         backgrounds.AddChild(backgroundSky);
+        backgrounds.AddChild(backgroundSky2);
+        backgrounds.AddChild(backgroundSky3);
 
         AddChild(backgrounds);
 
@@ -55,7 +64,7 @@ partial class Level : GameObjectList
         AddChild(stimer);
 
         // add mountains in the background
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < gridWidth; i++)
         {
             SpriteGameObject mountain = new SpriteGameObject(
                 "Sprites/Backgrounds/spr_mountain_" + (ExtendedGame.Random.Next(2) + 1),
