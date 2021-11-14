@@ -38,7 +38,7 @@ partial class Level : GameObjectList
         // Add a counter indicating the amount of water drops to collect
         waterDropCount = new TextGameObject("Fonts/MainFont", 0, Color.BlueViolet);
         waterDropCount.Text = "Remaining: " + waterDrops.Count.ToString();
-        waterDropCount.LocalPosition = new Vector2(TickTick.GetWindowSize().X - TileWidth, TickTick.GetWindowSize().Y / 25);
+        waterDropCount.LocalPosition = new Vector2(TickTick.window.X / 32 * 27, TickTick.window.Y / 25);
         waterDropCount.SetScreenSpace(true);
         AddChild(waterDropCount);
 
@@ -48,8 +48,8 @@ partial class Level : GameObjectList
         // Add Camera
         //TickTick.cameraOffset.W = TileWidth;
         //camera = new Camera(new Point(gridWidth * TileWidth, gridRows.Count * TileHeight), 
-        //TickTick.GetWindowSize(), Player, TickTick.cameraOffset);
-        //camera = new Camera(TickTick.GetWindowSize(), BoundingBox);
+        //TickTick.window, Player, TickTick.cameraOffset);
+        //camera = new Camera(TickTick.window, BoundingBox);
         //AddChild(camera);
     }
 
@@ -58,14 +58,14 @@ partial class Level : GameObjectList
         // - background box
         SpriteGameObject frame = new SpriteGameObject("Sprites/UI/spr_frame_hint", TickTick.Depth_UIBackground);
         frame.SetOriginToCenter();
-        frame.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 1.75f, TickTick.GetWindowSize().Y / 15);
+        frame.LocalPosition = new Vector2(TickTick.window.X / 1.75f, TickTick.window.Y / 15);
         frame.SetScreenSpace(true);      // This makes sure this text is counted towards UI and is not moved with camera
         AddChild(frame);
 
         // - text
         TextGameObject hintText = new TextGameObject("Fonts/HintFont", TickTick.Depth_UIForeground, Color.Black, TextGameObject.Alignment.Left);
         hintText.Text = description;
-        hintText.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 2.85f, TickTick.GetWindowSize().Y / 18);
+        hintText.LocalPosition = new Vector2(TickTick.window.X / 2.85f, TickTick.window.Y / 18);
         hintText.SetScreenSpace(true);      // This makes sure this text is counted towards UI and is not moved with camera
         AddChild(hintText);
     }

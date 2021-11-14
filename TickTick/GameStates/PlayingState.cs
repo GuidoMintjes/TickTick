@@ -15,7 +15,7 @@ class PlayingState : GameState, IPlayingState
     {
         // add a "quit" button
         //quitButton = new Button("Sprites/UI/spr_button_quit", 1);
-        //quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, TickTick.GetWindowSize().Y / 25);
+        //quitButton.LocalPosition = new Vector2(TickTick.window.X, TickTick.window.Y / 25);
         //gameObjects.AddChild(quitButton);
 
         // Removed quit button: TODO: add functionality ==> 'ESC' = 'back'
@@ -34,7 +34,7 @@ class PlayingState : GameState, IPlayingState
     {
         SpriteGameObject result = new SpriteGameObject(spriteName, 1);
         result.SetOriginToCenter();
-        result.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 2, TickTick.GetWindowSize().Y / 3);
+        result.LocalPosition = new Vector2(TickTick.window.X / 2, TickTick.window.Y / 2);
         gameObjects.AddChild(result);
         return result;
     }
@@ -93,9 +93,9 @@ class PlayingState : GameState, IPlayingState
     {
         level = new Level(levelIndex, ExtendedGame.ContentRootDirectory + "/Levels/level" + levelIndex + ".txt");
 
-        //quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, TickTick.GetWindowSize().Y / 25);
-        completedOverlay.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 1.75f, TickTick.GetWindowSize().Y / 3);
-        gameOverOverlay.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 1.75f, TickTick.GetWindowSize().Y / 3);
+        //quitButton.LocalPosition = new Vector2(TickTick.window.X, TickTick.window.Y / 25);
+        completedOverlay.LocalPosition = new Vector2(TickTick.window.X / 1.75f, TickTick.window.Y / 3);
+        gameOverOverlay.LocalPosition = new Vector2(TickTick.window.X / 1.75f, TickTick.window.Y / 3);
 
         // hide the overlay images
         completedOverlay.Visible = false;

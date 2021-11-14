@@ -16,7 +16,7 @@ class BombTimer : GameObjectList
 
     public BombTimer()
     {
-        localPosition = new Vector2(TickTick.GetWindowSize().X / 15, TickTick.GetWindowSize().Y / 30);
+        localPosition = new Vector2(TickTick.window.X / 15, TickTick.window.Y / 30);
         // Make sure this object moves with the camera
         SetScreenSpace(true);
         

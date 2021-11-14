@@ -52,7 +52,7 @@ class Player : AnimatedGameObject
         LoadAnimation("Sprites/LevelObjects/Player/spr_die@5", "die", true, 0.1f);
         LoadAnimation("Sprites/LevelObjects/Player/spr_explode@5x5", "explode", false, 0.04f);
 
-        camera = new Camera(TickTick.GetWindowSize(), level.BoundingBox);
+        camera = new Camera(TickTick.window, level.BoundingBox);
 
         Reset();
     }
@@ -170,13 +170,13 @@ class Player : AnimatedGameObject
 
         base.Update(gameTime);
 
-        if (OffsetGlobalPosition.Y / TickTick.GetWindowSize().Y < 0.3)
+        if (OffsetGlobalPosition.Y / TickTick.window.Y < 0.3)
             camera.MoveCamera(new Point(0, -6));
-        if (OffsetGlobalPosition.Y / TickTick.GetWindowSize().Y > 0.85)
+        if (OffsetGlobalPosition.Y / TickTick.window.Y > 0.85)
             camera.MoveCamera(new Point(0, 6));
-        if (OffsetGlobalPosition.X / TickTick.GetWindowSize().X < 0.5)
+        if (OffsetGlobalPosition.X / TickTick.window.X < 0.5)
             camera.MoveCamera(new Point(-6, 0));
-        if (OffsetGlobalPosition.X / TickTick.GetWindowSize().X > 1)
+        if (OffsetGlobalPosition.X / TickTick.window.X > 1)
             camera.MoveCamera(new Point(6, 0));
 
         if (IsAlive)
