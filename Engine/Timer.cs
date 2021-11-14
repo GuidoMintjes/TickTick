@@ -47,7 +47,7 @@ namespace Engine
 
         public virtual void HandleTimerEnd() {
 
-            Console.WriteLine("Main timer used!");
+            //Console.WriteLine("Main timer used!");
             //target.Visible = false;
         }
     }

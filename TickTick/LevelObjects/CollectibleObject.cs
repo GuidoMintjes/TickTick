@@ -50,6 +50,6 @@ class CollectibleObject : SpriteGameObject {
 
     public virtual void HandleCollision() {
 
-        Console.WriteLine("Collectibel");
+        //Console.WriteLine("Collectibel");
     }
 }
