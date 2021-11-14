@@ -1,4 +1,5 @@
-﻿namespace Engine.UI
+﻿using System;
+namespace Engine.UI
 {
     /// <summary>
     /// A class that can represent a UI button in the game.
@@ -25,6 +26,10 @@
         {
             Pressed = Visible && inputHelper.MouseLeftButtonPressed()
                 && BoundingBox.Contains(inputHelper.MousePositionWorld);
+
+            Console.WriteLine($"Mouseposition World: {inputHelper.MousePositionWorld}");
+            Console.WriteLine($"Bounding box button:  {BoundingBox}");
+            //Console.WriteLine($"handling input button: boundingboxcontaints{BoundingBox.Contains(inputHelper.MousePositionWorld)}");
         }
 
         public override void Reset()

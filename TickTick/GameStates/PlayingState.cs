@@ -15,8 +15,7 @@ class PlayingState : GameState, IPlayingState
     {
         // add a "quit" button
         quitButton = new Button("Sprites/UI/spr_button_quit", 1);
-        quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, TickTick.GetWindowSize().Y / 20);
-        Console.WriteLine($"LocalPos: {quitButton.LocalPosition} GlobalPos: {quitButton.GlobalPosition}");
+        quitButton.LocalPosition = new Vector2(TickTick.GetWindowSize().X, TickTick.GetWindowSize().Y / 25);
         gameObjects.AddChild(quitButton);
 
         // add overlay images
@@ -33,7 +32,7 @@ class PlayingState : GameState, IPlayingState
     {
         SpriteGameObject result = new SpriteGameObject(spriteName, 1);
         result.SetOriginToCenter();
-        result.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 2, TickTick.GetWindowSize().Y / 4);
+        result.LocalPosition = new Vector2(TickTick.GetWindowSize().X / 2, TickTick.GetWindowSize().Y / 3);
         gameObjects.AddChild(result);
         return result;
     }

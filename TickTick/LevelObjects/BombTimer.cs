@@ -65,8 +65,7 @@ class BombTimer : GameObjectList
                 ExtendedGame.AssetManager.PlaySoundEffect("Sounds/snd_beep");
         }
 
-        // TODO: Remove this and make sure SetScreenSpace works?
-        Console.WriteLine($"Localpos: {localPosition}");
+        // TODO: Remove this and make sure SetScreenSpace works
         localPosition -= Camera.cameraChange;
     }
 
