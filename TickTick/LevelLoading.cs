@@ -44,13 +44,6 @@ partial class Level : GameObjectList
 
         // add game objects to show that general level info
         AddLevelInfoObjects(description);
-
-        // Add Camera
-        //TickTick.cameraOffset.W = TileWidth;
-        //camera = new Camera(new Point(gridWidth * TileWidth, gridRows.Count * TileHeight), 
-        //TickTick.window, Player, TickTick.cameraOffset);
-        //camera = new Camera(TickTick.window, BoundingBox);
-        //AddChild(camera);
     }
 
     void AddLevelInfoObjects(string description)
