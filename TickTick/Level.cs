@@ -22,6 +22,7 @@ partial class Level : GameObjectList
 
     SpriteGameObject goal;
     BombTimer timer;
+    public float levelTime = 30f;
     SpeedBackTimer stimer;
 
     bool completionDetected;
@@ -53,10 +54,7 @@ partial class Level : GameObjectList
 
         AddChild(backgrounds);
 
-        // add the timer
-        timer = new BombTimer();
-        timer.SetScreenSpace(true);
-        AddChild(timer);
+        
 
         // load the rest of the level
         LoadLevelFromFile(filename);
@@ -203,7 +201,14 @@ partial class Level : GameObjectList
 
     public override void Reset()
     {
+        Player.Reset();
         base.Reset();
         completionDetected = false;
+    }
+
+
+    public void ResetTime() {
+
+        timer.Reset();
     }
 }

@@ -5,6 +5,7 @@ using System;
 class BombTimer : GameObjectList
 {
     double timeLeft;
+    double defaultTime;
 
     public bool Running { get; set; }
     public float Multiplier { get; set; }
@@ -14,8 +15,10 @@ class BombTimer : GameObjectList
 
     public bool HasPassed { get { return timeLeft <= 0; } }
 
-    public BombTimer()
+    public BombTimer(float time)
     {
+        defaultTime = time;
+
         localPosition = new Vector2(TickTick.window.X / 15, TickTick.window.Y / 30);
         // Make sure this object moves with the camera
         SetScreenSpace(true);
@@ -35,6 +38,18 @@ class BombTimer : GameObjectList
         Reset();
 
     }
+
+
+    public void SetTime(float time) {
+
+        Running = false;
+        timeLeft = time;
+
+        Console.WriteLine(time);
+
+        Running = true;
+    }
+
 
     public override void Update(GameTime gameTime)
     {
@@ -72,7 +87,7 @@ class BombTimer : GameObjectList
     public override void Reset()
     {
         base.Reset();
-        timeLeft = 30;
+        timeLeft = defaultTime;
         Running = true;
         Multiplier = 1;
     }

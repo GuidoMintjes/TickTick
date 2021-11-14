@@ -13,7 +13,7 @@ namespace Engine
         /// <summary>
         /// The child objects of this game object.
         /// </summary>
-        List<GameObject> children;
+        protected List<GameObject> children;
 
         /// <summary>
         /// Creates a new GameObjectList with an empty list of children.
@@ -49,6 +49,7 @@ namespace Engine
         /// <param name="gameTime">An object containing information about the time that has passed in the game.</param>
         public override void Update(GameTime gameTime)
         {
+
             foreach (GameObject obj in children) {
                 
                     obj.Update(gameTime);

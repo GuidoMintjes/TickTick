@@ -48,8 +48,9 @@ class PlayingState : GameState, IPlayingState
             // if the player character has died, allow the player to reset the level
             if (gameOverOverlay.Visible)
             {
-                if (inputHelper.KeyPressed(Keys.Space))
+                if (inputHelper.KeyPressed(Keys.Space)) {
                     level.Reset();
+                }   
             }
             
             // if the level has been completed, pressing the spacebar should send the player to the next level

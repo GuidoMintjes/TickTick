@@ -78,4 +78,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\Levels\level11.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
