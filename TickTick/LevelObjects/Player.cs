@@ -197,29 +197,18 @@ class Player : AnimatedGameObject
 
     }
 
-    /*
+    
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
-
-        //float totalTime = (float) gameTime.TotalGameTime.TotalSeconds;
-
 
         if (!Visible)
             return;
 
-        // draw the sprite at its *global* position in the game world
-        if (sprite != null)
+        // Draw the sprite at its *global* position in the game world
+        if (sprite != null) {
 
-            if (!IsSpeeding) {
-                //sprite.Draw(spriteBatch, GlobalPosition, Origin);
-
-                spriteBatch.End();
-
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
-                sprite.Draw(spriteBatch, GlobalPosition, Origin);
-                spriteBatch.End();
-
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
-            } else {
+            // Check if the player is speeding, and if so, discontinue the current spritebatch and start a new one with
+            //  the rainbow shader effect (speed up shader effect) enabled
+            if (IsSpeeding) {
 
                 spriteBatch.End();
 
@@ -227,19 +216,20 @@ class Player : AnimatedGameObject
 
                 level.rainbowShader.Parameters["TimeInSeconds"].SetValue((float)gameTime.TotalGameTime.TotalSeconds);
                 level.rainbowShader.CurrentTechnique.Passes[0].Apply();
-                sprite.Draw(spriteBatch, GlobalPosition, Origin);
+
+                sprite.Draw(spriteBatch, OffsetGlobalPosition, Origin);
 
                 spriteBatch.End();
 
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
 
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
+            } else {
+
+                sprite.Draw(spriteBatch, OffsetGlobalPosition, Origin);
             }
-
-
-
-        //base.Draw(gameTime, spriteBatch);
+        }
     }
-    */
+    
 
     void ApplyFriction(GameTime gameTime)
     {
