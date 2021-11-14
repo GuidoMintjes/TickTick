@@ -6,16 +6,8 @@ using System.IO;
 
 partial class Level : GameObjectList
 {
-
-    public List<string> gridRows = new List<string>();
-
-    public string fileName;
-
     void LoadLevelFromFile(string filename)
     {
-
-        fileName = filename;
-
         // open the file
         StreamReader reader = new StreamReader(filename);
 
@@ -25,6 +17,7 @@ partial class Level : GameObjectList
         // read the rows of the grid; keep track of the longest row
         gridWidth = 0;
 
+        List<string> gridRows = new List<string>();
         string line = reader.ReadLine();
         while (line != null)
         {
@@ -44,29 +37,13 @@ partial class Level : GameObjectList
 
         // Add a counter indicating the amount of water drops to collect
         waterDropCount = new TextGameObject("Fonts/MainFont", 1, Color.BlueViolet);
-
-        if (waterDrops.Count > 0)
-            waterDropCount.Text = "Remaining: " + waterDrops.Count.ToString();
-        else
-            waterDropCount.Text = "No water here...";
-
-
-
+        waterDropCount.Text = "Remaining: " + waterDrops.Count.ToString();
         waterDropCount.LocalPosition = new Vector2(TickTick.window.X / 32 * 27, TickTick.window.Y / 25);
         waterDropCount.SetScreenSpace(true);
         AddChild(waterDropCount);
 
         // add game objects to show that general level info
         AddLevelInfoObjects(description);
-
-        // add the timer
-        levelTime = float.Parse(gridRows[gridRows.Count - 1]);
-        timer = new BombTimer(levelTime);
-        timer.SetScreenSpace(true);
-
-
-        timer.SetTime(levelTime);
-        AddChild(timer);
     }
 
     void AddLevelInfoObjects(string description)

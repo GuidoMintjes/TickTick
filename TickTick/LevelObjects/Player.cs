@@ -59,10 +59,6 @@ class Player : AnimatedGameObject
 
     public override void Reset()
     {
-        camera.CamReset();
-
-        IsSpeeding = false;
-
         // go back to the starting position
         localPosition = startPosition;
         velocity = Vector2.Zero;
@@ -174,26 +170,14 @@ class Player : AnimatedGameObject
 
         base.Update(gameTime);
 
-        if (IsSpeeding) {
-            if (OffsetGlobalPosition.Y / TickTick.window.Y < 0.3)
-                camera.MoveCamera(new Point(0, -5));
-            if (OffsetGlobalPosition.Y / TickTick.window.Y > 0.85)
-                camera.MoveCamera(new Point(0, 5));
-            if (OffsetGlobalPosition.X / TickTick.window.X < 0.5)
-                camera.MoveCamera(new Point(-10, 0));
-            if (OffsetGlobalPosition.X / TickTick.window.X > 0.7)
-                camera.MoveCamera(new Point(10, 0));
-        } else {
-
-            if (OffsetGlobalPosition.Y / TickTick.window.Y < 0.3)
-                camera.MoveCamera(new Point(0, -5));
-            if (OffsetGlobalPosition.Y / TickTick.window.Y > 0.85)
-                camera.MoveCamera(new Point(0, 5));
-            if (OffsetGlobalPosition.X / TickTick.window.X < 0.5)
-                camera.MoveCamera(new Point(-5, 0));
-            if (OffsetGlobalPosition.X / TickTick.window.X > 0.7)
-                camera.MoveCamera(new Point(5, 0));
-        }
+        if (OffsetGlobalPosition.Y / TickTick.window.Y < 0.3)
+            camera.MoveCamera(new Point(0, -10));
+        if (OffsetGlobalPosition.Y / TickTick.window.Y > 0.85)
+            camera.MoveCamera(new Point(0, 10));
+        if (OffsetGlobalPosition.X / TickTick.window.X < 0.5)
+            camera.MoveCamera(new Point(-10, 0));
+        if (OffsetGlobalPosition.X / TickTick.window.X > 0.7)
+            camera.MoveCamera(new Point(10, 0));
 
         if (IsAlive)
         {
@@ -372,8 +356,6 @@ class Player : AnimatedGameObject
         PlayAnimation("die");
         velocity = new Vector2(0, -jumpSpeed);
         level.Timer.Running = false;
-        level.ResetTime();
-        //level.Reset();
 
         ExtendedGame.AssetManager.PlaySoundEffect("Sounds/snd_player_die");
     }

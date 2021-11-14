@@ -135,8 +135,8 @@ namespace Engine
                 Exit();
 
             // toggle full-screen mode when the player presses F5
-            if (inputHelper.KeyPressed(Keys.F5))
-                FullScreen = !FullScreen;
+            //if (inputHelper.KeyPressed(Keys.F5))
+                //FullScreen = !FullScreen;
 
             GameStateManager.HandleInput(inputHelper);
         }
