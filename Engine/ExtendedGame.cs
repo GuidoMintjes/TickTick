@@ -149,7 +149,8 @@ namespace Engine
         {
             GraphicsDevice.Clear(Color.Black);
 
-            if (Camera.alive) spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+            if (Camera.alive) spriteBatch.Begin(SpriteSortMode.FrontToBack, 
+                                    BlendState.AlphaBlend, null, null, null, null, spriteScale);
 
             else spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, spriteScale);
 

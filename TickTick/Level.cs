@@ -53,13 +53,13 @@ partial class Level : GameObjectList
 
         AddChild(backgrounds);
 
-        // load the rest of the level
-        LoadLevelFromFile(filename);
-
         // add the timer
         timer = new BombTimer();
         timer.SetScreenSpace(true);
         AddChild(timer);
+
+        // load the rest of the level
+        LoadLevelFromFile(filename);
 
         stimer = new SpeedBackTimer(this);
         AddChild(stimer);

@@ -66,7 +66,7 @@ class BombTimer : GameObjectList
         }
 
         // TODO: Remove this and make sure SetScreenSpace works
-        localPosition -= Camera.cameraChange;
+        //localPosition = Camera.cameraChange;
     }
 
     public override void Reset()

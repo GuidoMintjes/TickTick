@@ -29,6 +29,7 @@ namespace Engine {
         /// A larger value means that the object will be drawn on top.
         /// </summary>
         protected float depth;
+        protected bool shiftWithCamera = false;
 
         /// <summary>
         /// Creates a new SpriteGameObject with a given sprite name.
@@ -38,6 +39,9 @@ namespace Engine {
         /// <param name="sheetIndex">The sheet index of the sprite to use initially.</param>
         public SpriteGameObject(string spriteName, float depth, int sheetIndex = 0) {
             this.depth = depth;
+
+            if (depth > 0.4 && depth < 0.8)
+                shiftWithCamera = true;
 
             if (spriteName != null)
                 sprite = new SpriteSheet(spriteName, depth, sheetIndex);
@@ -51,12 +55,21 @@ namespace Engine {
         /// <param name="gameTime">An object containing information about the time that has passed in the game.</param>
         /// <param name="spriteBatch">A sprite batch object used for drawing sprites.</param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
+            
             if (!Visible)
                 return;
 
             // draw the sprite at its *global* position in the game world
-            if (sprite != null)
-                sprite.Draw(spriteBatch, GlobalPosition, Origin);
+            if (sprite != null) {
+
+                if (shiftWithCamera) {
+
+                    sprite.Draw(spriteBatch, OffsetGlobalPosition, Origin);
+
+                } else {
+                    sprite.Draw(spriteBatch, GlobalPosition, Origin);
+                }
+            }
         }
 
         /// <summary>

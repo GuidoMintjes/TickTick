@@ -25,6 +25,7 @@ class Player : AnimatedGameObject
     bool downPressed; // if the down keys is being pressed
 
     Level level;
+    Camera camera;
     Vector2 startPosition;
     
     bool isCelebrating; // Whether or not the player is celebrating a level victory.
@@ -50,6 +51,8 @@ class Player : AnimatedGameObject
         LoadAnimation("Sprites/LevelObjects/Player/spr_celebrate@14", "celebrate", false, 0.05f);
         LoadAnimation("Sprites/LevelObjects/Player/spr_die@5", "die", true, 0.1f);
         LoadAnimation("Sprites/LevelObjects/Player/spr_explode@5x5", "explode", false, 0.04f);
+
+        camera = new Camera(TickTick.GetWindowSize(), level.BoundingBox);
 
         Reset();
     }
@@ -167,6 +170,15 @@ class Player : AnimatedGameObject
 
         base.Update(gameTime);
 
+        if (OffsetGlobalPosition.Y / TickTick.GetWindowSize().Y < 0.3)
+            camera.MoveCamera(new Point(0, -6));
+        if (OffsetGlobalPosition.Y / TickTick.GetWindowSize().Y > 0.85)
+            camera.MoveCamera(new Point(0, 6));
+        if (OffsetGlobalPosition.X / TickTick.GetWindowSize().X < 0.5)
+            camera.MoveCamera(new Point(-6, 0));
+        if (OffsetGlobalPosition.X / TickTick.GetWindowSize().X > 1)
+            camera.MoveCamera(new Point(6, 0));
+
         if (IsAlive)
         {
             // check for collisions with tiles
@@ -202,16 +214,16 @@ class Player : AnimatedGameObject
 
                 spriteBatch.End();
 
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
                 sprite.Draw(spriteBatch, GlobalPosition, Origin);
                 spriteBatch.End();
 
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
             } else {
 
                 spriteBatch.End();
 
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
 
                 level.rainbowShader.Parameters["TimeInSeconds"].SetValue((float)gameTime.TotalGameTime.TotalSeconds);
                 level.rainbowShader.CurrentTechnique.Passes[0].Apply();
@@ -220,7 +232,7 @@ class Player : AnimatedGameObject
                 spriteBatch.End();
 
 
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, Camera.Transform);
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, TickTick.staticSpriteScale);
             }
 
 

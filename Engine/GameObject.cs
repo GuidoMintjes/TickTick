@@ -16,6 +16,10 @@ namespace Engine
         }
         protected Vector2 localPosition;
 
+        public Vector2 OffsetGlobalPosition {
+            get { return GlobalPosition - Camera.GetCameraPosition(); }
+        }
+
         /// <summary>
         /// The current velocity of this game object, in units per second.
         /// </summary>
@@ -67,9 +71,9 @@ namespace Engine
         {
             previousPosition = localPosition;
 
-            if (IsUI) LocalPosition -= Camera.cameraChange;
+            //if (IsUI) GlobalPosition = LocalPosition - Camera.GetCameraPosition();
 
-            else LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            /*else*/ LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         /// <summary>

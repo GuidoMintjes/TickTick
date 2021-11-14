@@ -16,7 +16,7 @@ class TickTick : ExtendedGameWithLevels
 
     public float blurEffect = 5f;
 
-    public static Vector4 cameraOffset; //todo: make not static
+    public static Point window = new Point(1440, 825);
 
     [STAThread]
     static void Main()
@@ -35,8 +35,7 @@ class TickTick : ExtendedGameWithLevels
 
         // set a custom world and window size
         worldSize = new Point(1440, 825);
-        windowSize = new Point(1024, 768);
-        cameraOffset = new Vector4(-584f, 0f, 0f, 0f);
+        windowSize = new Point(1440, 825);
 
         // create a camera object
         //Camera camera = new Camera(worldSize, windowSize, new SpriteGameObject("Sprites/Tiles/spr_platform", 0));
@@ -64,9 +63,9 @@ class TickTick : ExtendedGameWithLevels
         staticSpriteScale = spriteScale;
     }
 
-    // TODO MAAK HET NIET MEER STATIC
+
     public static Point GetWindowSize() {
 
-        return windowSize;
+        return window;
     }
 }
